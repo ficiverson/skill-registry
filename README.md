@@ -6,15 +6,17 @@ This registry was created and is maintained with [skills-forge](https://github.c
 
 - `format_version`: `1`
 - `base_url`: `https://raw.githubusercontent.com/ficiverson/skill-registry/main`
-- `updated_at`: `2026-04-06T13:54:30+00:00`
+- `updated_at`: `2026-04-06T14:20:56+00:00`
+- `skills_count`: `2`
+- `categories`: `evaluation`
+- `owners`: `Fernando Souto`
 
 ## Skills
 
-| Category | Skill | Latest | Version | SHA256 | Download |
-| --- | --- | --- | --- | --- | --- |
-| `evaluation` | `ai-eng-evaluator` | `1.0.0` | `0.2.0` | `cc49e8d525bb0d163b23e48656961a040014b22ee5789d75a67a73a42ea67f8c` | [download](https://raw.githubusercontent.com/ficiverson/skill-registry/main/packs/evaluation/ai-eng-evaluator-0.2.0.skillpack) |
-| `evaluation` | `ai-eng-evaluator` | `1.0.0` | `1.0.0` | `10d16ba0db7b768219d0adb6c3dd8ea68b62e9f719a0132fdcd2bcf10271c0e6` | [download](https://raw.githubusercontent.com/ficiverson/skill-registry/main/packs/evaluation/ai-eng-evaluator-1.0.0.skillpack) |
-| `evaluation` | `user-story-test-cases` | `0.1.0` | `0.1.0` | `b1bfde6e7fa4823d342148e40ad0e590a978d917c7c3a2009fe13903ccf15a35` | [download](https://raw.githubusercontent.com/ficiverson/skill-registry/main/packs/evaluation/user-story-test-cases-0.1.0.skillpack) |
+| Category | Skill | Latest | Owner | Published At | Size | SHA256 | Tags | Description | Download |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `evaluation` | `ai-eng-evaluator` | `1.0.0` | `Fernando Souto (me@fernandosouto.dev)` | `2026-04-06T13:43:36+00:00` | `37.6 KB` | `10d16ba0db7b768219d0adb6c3dd8ea68b62e9f719a0132fdcd2bcf10271c0e6` | `ai`, `eng`, `evaluator`, `evaluation`, `evaluate-repo`, `score-candidate`, `grade-challenge`, `review-submission`, `competency-levels-(junior/medior/senior)`, `growth-framework`, `engineering-rubric-works-for-any-language-or-stack`, `not-just-python/langchain` | Evaluates AI engineering code challenge submissions (GitHub repos, zip files, or local folders) against a structured competency matrix and produces a professional PDF report. Triggers on: evaluate repo, score candidate, grade challenge, review submission, competency levels (Junior/Medior/Senior), growth framework, engineering rubric. Works for any language or stack, not just Python/LangChain. | [download](https://raw.githubusercontent.com/ficiverson/skill-registry/main/packs/evaluation/ai-eng-evaluator-1.0.0.skillpack) |
+| `evaluation` | `user-story-test-cases` | `0.1.0` | `Fernando Souto (me@fernandosouto.dev)` | `2026-04-06T13:54:02+00:00` | `1.2 KB` | `b1bfde6e7fa4823d342148e40ad0e590a978d917c7c3a2009fe13903ccf15a35` | `user`, `story`, `test`, `cases`, `evaluation`, `acceptance-criteria`, `edge-cases`, `happy-path`, `negative-tests`, `bdd` | Use this skill when deriving structured test cases from a user story. Triggers on: acceptance criteria, edge cases, happy path, negative tests, BDD. | [download](https://raw.githubusercontent.com/ficiverson/skill-registry/main/packs/evaluation/user-story-test-cases-0.1.0.skillpack) |
 
 ## Maintainer workflow
 

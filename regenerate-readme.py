@@ -13,11 +13,39 @@ README_PATH = ROOT / "README.md"
 FORGE_REPO = "https://github.com/ficiverson/skills-forge"
 
 
+def _format_size(size_bytes: object) -> str:
+    if not isinstance(size_bytes, int) or size_bytes < 0:
+        return ""
+    if size_bytes < 1024:
+        return f"{size_bytes} B"
+    if size_bytes < 1024 * 1024:
+        return f"{size_bytes / 1024:.1f} KB"
+    return f"{size_bytes / (1024 * 1024):.2f} MB"
+
+
+def _pick_latest_version(skill: dict) -> dict:
+    latest = skill.get("latest", "")
+    versions = skill.get("versions", [])
+    if not isinstance(versions, list):
+        return {}
+
+    # Prefer explicit version match to avoid semver parsing edge cases.
+    for version in versions:
+        if isinstance(version, dict) and version.get("version", "") == latest:
+            return version
+
+    # Fallback to last version entry if latest isn't found.
+    for version in reversed(versions):
+        if isinstance(version, dict):
+            return version
+    return {}
+
+
 def _render_skill_table(skills: list[dict], base_url: str) -> str:
     header = "\n".join(
         [
-            "| Category | Skill | Latest | Version | SHA256 | Download |",
-            "| --- | --- | --- | --- | --- | --- |",
+            "| Category | Skill | Latest | Owner | Published At | Size | SHA256 | Tags | Description | Download |",
+            "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |",
         ]
     )
     rows: list[str] = []
@@ -26,19 +54,29 @@ def _render_skill_table(skills: list[dict], base_url: str) -> str:
         category = skill.get("category", "")
         name = skill.get("name", "")
         latest = skill.get("latest", "")
-        versions = skill.get("versions", [])
+        description = str(skill.get("description", "")).replace("\n", " ").replace("|", "\\|")
+        tags = skill.get("tags", [])
+        tags_text = ", ".join(f"`{tag}`" for tag in tags) if isinstance(tags, list) else ""
+        owner = skill.get("owner", {})
+        owner_name = owner.get("name", "") if isinstance(owner, dict) else ""
+        owner_email = owner.get("email", "") if isinstance(owner, dict) else ""
+        owner_text = f"{owner_name} ({owner_email})" if owner_name and owner_email else (owner_name or owner_email)
 
-        for version in versions:
-            ver = version.get("version", "")
-            sha256 = version.get("sha256", "")
-            pack_path = version.get("path", "")
-            download_url = f"{base_url.rstrip('/')}/{pack_path}" if pack_path else ""
-            rows.append(
-                f"| `{category}` | `{name}` | `{latest}` | `{ver}` | `{sha256}` | [download]({download_url}) |"
-            )
+        latest_version = _pick_latest_version(skill)
+        version = latest_version.get("version", "")
+        sha256 = latest_version.get("sha256", "")
+        published_at = latest_version.get("published_at", "")
+        size = _format_size(latest_version.get("size_bytes"))
+        pack_path = latest_version.get("path", "")
+        download_url = f"{base_url.rstrip('/')}/{pack_path}" if pack_path else ""
+        download = f"[download]({download_url})" if download_url else ""
+
+        rows.append(
+            f"| `{category}` | `{name}` | `{version or latest}` | `{owner_text}` | `{published_at}` | `{size}` | `{sha256}` | {tags_text} | {description} | {download} |"
+        )
 
     if not rows:
-        rows.append("| - | - | - | - | - | - |")
+        rows.append("| - | - | - | - | - | - | - | - | - | - |")
 
     return "\n".join([header, *rows])
 
@@ -49,6 +87,18 @@ def main() -> int:
     base_url = index.get("base_url", "")
     registry_name = index.get("registry_name", "skill-registry")
     updated_at = index.get("updated_at", "")
+    skill_count = len(skills) if isinstance(skills, list) else 0
+    owner_names = sorted(
+        {
+            skill.get("owner", {}).get("name", "")
+            for skill in skills
+            if isinstance(skill, dict) and isinstance(skill.get("owner", {}), dict)
+        }
+        - {""}
+    )
+    categories = sorted(
+        {skill.get("category", "") for skill in skills if isinstance(skill, dict)} - {""}
+    )
 
     content = "\n".join(
         [
@@ -62,6 +112,9 @@ def main() -> int:
             f"- `format_version`: `{index.get('format_version', '')}`",
             f"- `base_url`: `{base_url}`",
             f"- `updated_at`: `{updated_at}`",
+            f"- `skills_count`: `{skill_count}`",
+            f"- `categories`: `{', '.join(categories)}`",
+            f"- `owners`: `{', '.join(owner_names)}`",
             "",
             "## Skills",
             "",
