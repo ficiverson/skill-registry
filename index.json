@@ -2,27 +2,27 @@
   "format_version": "1",
   "registry_name": "skill-registry",
   "base_url": "https://raw.githubusercontent.com/ficiverson/skill-registry/main",
-  "updated_at": "2026-04-06T14:20:56+00:00",
+  "updated_at": "2026-04-06T21:46:28+00:00",
   "skills": [
     {
+      "category": "development",
+      "name": "publish-to-pypi",
+      "latest": "1.0.0",
+      "description": "Use this skill when preparing a Python project for PyPI publication or setting\nup automated publishing with GitHub Actions. Triggers on: publish to PyPI,\nupload package, distribute Python library, pip installable, pyproject.toml setup,\nPyPI GitHub Action, OIDC trusted publishing, twine upload, package distribution,\nclassifiers, wheel, sdist, build backend, packaging standards.\nAlways use this skill whenever the user mentions publishing a Python package,\nmaking something pip-installable, or setting up CI/CD for a Python library.",
       "versions": [
         {
-          "version": "0.2.0",
-          "path": "packs/evaluation/ai-eng-evaluator-0.2.0.skillpack",
-          "sha256": "cc49e8d525bb0d163b23e48656961a040014b22ee5789d75a67a73a42ea67f8c",
-          "published_at": "2026-04-06T13:39:40+00:00",
-          "size_bytes": 38473
-        },
-        {
           "version": "1.0.0",
-          "path": "packs/evaluation/ai-eng-evaluator-1.0.0.skillpack",
-          "sha256": "10d16ba0db7b768219d0adb6c3dd8ea68b62e9f719a0132fdcd2bcf10271c0e6",
-          "published_at": "2026-04-06T13:43:36+00:00",
-          "size_bytes": 38474
+          "path": "packs/development/publish-to-pypi-1.0.0.skillpack",
+          "sha256": "31bbf29e4a56c5d2540b8d4321809d5a70356c86ac874df66cecfb0d9b156a73",
+          "published_at": "2026-04-06T21:46:28+00:00",
+          "size_bytes": 5482
         }
-      ],
+      ]
+    },
+    {
       "category": "evaluation",
       "name": "ai-eng-evaluator",
+      "latest": "1.0.0",
       "description": "Evaluates AI engineering code challenge submissions (GitHub repos, zip files, or local folders) against a structured competency matrix and produces a professional PDF report. Triggers on: evaluate repo, score candidate, grade challenge, review submission, competency levels (Junior/Medior/Senior), growth framework, engineering rubric. Works for any language or stack, not just Python/LangChain.",
       "tags": [
         "ai",
@@ -42,20 +42,27 @@
         "name": "Fernando Souto",
         "email": "me@fernandosouto.dev"
       },
-      "latest": "1.0.0"
-    },
-    {
       "versions": [
         {
-          "version": "0.1.0",
-          "path": "packs/evaluation/user-story-test-cases-0.1.0.skillpack",
-          "sha256": "b1bfde6e7fa4823d342148e40ad0e590a978d917c7c3a2009fe13903ccf15a35",
-          "published_at": "2026-04-06T13:54:02+00:00",
-          "size_bytes": 1221
+          "version": "0.2.0",
+          "path": "packs/evaluation/ai-eng-evaluator-0.2.0.skillpack",
+          "sha256": "cc49e8d525bb0d163b23e48656961a040014b22ee5789d75a67a73a42ea67f8c",
+          "published_at": "2026-04-06T13:39:40+00:00",
+          "size_bytes": 38473
+        },
+        {
+          "version": "1.0.0",
+          "path": "packs/evaluation/ai-eng-evaluator-1.0.0.skillpack",
+          "sha256": "10d16ba0db7b768219d0adb6c3dd8ea68b62e9f719a0132fdcd2bcf10271c0e6",
+          "published_at": "2026-04-06T13:43:36+00:00",
+          "size_bytes": 38474
         }
-      ],
+      ]
+    },
+    {
       "category": "evaluation",
       "name": "user-story-test-cases",
+      "latest": "0.1.0",
       "description": "Use this skill when deriving structured test cases from a user story. Triggers on: acceptance criteria, edge cases, happy path, negative tests, BDD.",
       "tags": [
         "user",
@@ -73,7 +80,15 @@
         "name": "Fernando Souto",
         "email": "me@fernandosouto.dev"
       },
-      "latest": "0.1.0"
+      "versions": [
+        {
+          "version": "0.1.0",
+          "path": "packs/evaluation/user-story-test-cases-0.1.0.skillpack",
+          "sha256": "b1bfde6e7fa4823d342148e40ad0e590a978d917c7c3a2009fe13903ccf15a35",
+          "published_at": "2026-04-06T13:54:02+00:00",
+          "size_bytes": 1221
+        }
+      ]
     }
   ]
 }
