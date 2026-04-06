@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fernando Souto | Skill Registry</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .copy-success {
+            display: none;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #10b981;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            font-size: 10px;
+            font-weight: bold;
+            animation: fadeInOut 2s forwards;
+        }
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateY(5px); }
+            15% { opacity: 1; transform: translateY(0); }
+            85% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-5px); }
+        }
+        .tag-pill {
+            background: rgba(79, 70, 229, 0.1);
+            border: 1px solid rgba(79, 70, 229, 0.2);
+            color: #818cf8;
+        }
+        .hidden-skill { display: none !important; }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen font-sans">
+
+    <header class="border-b border-slate-800 bg-slate-900/50 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex flex-wrap gap-4 justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="bg-indigo-600 p-2 rounded-lg text-2xl shadow-lg shadow-indigo-500/20">⚒️</div>
+                <h1 class="text-xl font-bold tracking-tight uppercase hidden sm:block">Skill Registry <span class="text-indigo-400">0.1.0</span></h1>
+            </div>
+            
+            <div class="flex flex-1 max-w-md items-center gap-4">
+                <div class="relative flex-1">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-500">
+                        <i class="fas fa-search text-xs"></i>
+                    </div>
+                    <input type="text" id="skill-search" 
+                        placeholder="Search skills..." 
+                        class="w-full bg-slate-800/50 border border-slate-700 rounded-xl py-2 pl-9 pr-4 focus:outline-none focus:border-indigo-500 transition-all text-sm text-white placeholder-slate-500">
+                </div>
+
+                <a href="https://github.com/ficiverson/skills-forge" class="text-[10px] font-black bg-slate-800 hover:bg-slate-700 px-4 py-2.5 rounded-xl transition-all border border-slate-700 whitespace-nowrap tracking-widest uppercase">
+                    <i class="fab fa-github mr-2"></i> Forge repository
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 py-12">
+        <section class="mb-12 text-center md:text-left">
+            <h2 class="text-5xl font-black mb-4 text-white tracking-tight">Forge your <span class="text-indigo-500 italic">Workflow.</span></h2>
+            
+            <div class="bg-indigo-950/20 border-l-4 border-indigo-500 p-6 my-8 rounded-r-xl">
+                <p class="text-slate-300 leading-relaxed italic">
+                    The <strong>Skill Forge</strong> is a distribution ecosystem for AI capabilities. It allows engineers to package specialized knowledge, styles, and technical references into deterministic <code>.skillpack</code> artifacts. By using a GitHub repository as a registry, teams can version and share these skills securely using SHA256 verification. Once installed via CLI, these skills empower AI agents like <strong>Claude Code</strong> with context-aware expertise tailored to your specific stack.
+                </p>
+            </div>
+
+            <p class="text-slate-400 text-lg max-w-2xl leading-relaxed">
+                Expert skills by <strong>Fernando Souto</strong>. All available packs are listed below for your forge.
+            </p>
+        </section>
+
+        <div id="skills-container" class="grid grid-cols-1 md:grid-cols-2 gap-10"></div>
+        
+        <div id="no-results" class="hidden text-center py-20">
+            <div class="text-5xl mb-4 text-slate-700">🔍</div>
+            <p class="text-slate-500 italic">No matches found for your current search.</p>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const registryData = {
+                "base_url": "https://raw.githubusercontent.com/ficiverson/skill-registry/main",
+                "skills": [
+                    {
+                        "name": "ai-eng-evaluator",
+                        "category": "evaluation",
+                        "description": "Evaluates AI engineering code challenge submissions (GitHub repos, zip files, or local folders) against a structured competency matrix and produces a professional PDF report. ",
+                        "tags": ["ai", "eng", "evaluator", "evaluation", "growth-framework"],
+                        "latest": "1.0.0",
+                        "versions": [
+                            {
+                                "version": "1.0.0",
+                                "path": "packs/evaluation/ai-eng-evaluator-1.0.0.skillpack",
+                                "sha256": "10d16ba0db7b768219d0adb6c3dd8ea68b62e9f719a0132fdcd2bcf10271c0e6"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "user-story-test-cases",
+                        "category": "evaluation",
+                        "description": "Use this skill when deriving structured test cases from a user story. Triggers on: acceptance criteria, edge cases, happy path, negative tests, BDD. ",
+                        "tags": ["user-story", "testing", "bdd", "acceptance-criteria"],
+                        "latest": "0.1.0",
+                        "versions": [
+                            {
+                                "version": "0.1.0",
+                                "path": "packs/evaluation/user-story-test-cases-0.1.0.skillpack",
+                                "sha256": "b1bfde6e7fa4823d342148e40ad0e590a978d917c7c3a2009fe13903ccf15a35"
+                            }
+                        ]
+                    }
+                ]
+            };
+
+            const container = document.getElementById('skills-container');
+            const searchInput = document.getElementById('skill-search');
+            const noResults = document.getElementById('no-results');
+
+            window.copyCmd = (text, id) => {
+                navigator.clipboard.writeText(text).then(() => {
+                    const el = document.getElementById(`copy-msg-${id}`);
+                    el.style.display = 'block';
+                    setTimeout(() => { el.style.display = 'none'; }, 2000);
+                });
+            };
+
+            registryData.skills.forEach((skill, idx) => {
+                const latest = skill.versions.find(v => v.version === skill.latest);
+                const fullUrl = `${registryData.base_url}/${latest.path}`;
+                const installCmd = `skill-forge install ${fullUrl} --sha256 ${latest.sha256}`;
+                
+                const tagsHtml = skill.tags.map(tag => 
+                    `<span class="tag-pill text-[9px] px-2 py-0.5 rounded-md uppercase font-bold tracking-tighter">#${tag}</span>`
+                ).join(' ');
+
+                const card = `
+                    <div class="skill-card bg-slate-800/30 border border-slate-700/50 rounded-[2.5rem] p-10 hover:border-indigo-500/40 transition-all flex flex-col h-full relative group shadow-2xl" 
+                         data-title="${skill.name.toLowerCase()}" 
+                         data-tags="${skill.tags.join(' ').toLowerCase()}">
+                        <div class="flex justify-between items-center mb-8">
+                            <span class="text-[10px] font-black uppercase tracking-[0.2em] text-indigo-400 bg-indigo-400/5 px-4 py-1.5 rounded-full border border-indigo-400/20">
+                                ${skill.category}
+                            </span>
+                            <span class="text-slate-500 text-xs font-mono font-bold">v${skill.latest}</span>
+                        </div>
+                        <h3 class="text-3xl font-bold mb-4 text-white group-hover:text-indigo-300 transition-colors tracking-tight italic">${skill.name}</h3>
+                        <p class="text-slate-400 mb-6 leading-relaxed text-sm italic">"${skill.description}"</p>
+                        <div class="flex flex-wrap gap-2 mb-10">${tagsHtml}</div>
+                        <div class="space-y-6 mt-auto">
+                            <div class="relative group/cmd">
+                                <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 ml-1">Terminal Installation</p>
+                                <div onclick="copyCmd('${installCmd}', ${idx})" class="cursor-pointer bg-black/60 p-6 rounded-2xl border border-slate-800 hover:border-indigo-500/30 transition-all relative">
+                                    <code class="text-sm text-indigo-400 font-mono block leading-relaxed break-all">
+                                        <span class="text-indigo-600">$</span> skill-forge install <span class="text-slate-300">...${latest.path.split('/').pop()}</span>
+                                    </code>
+                                    <div id="copy-msg-${idx}" class="copy-success italic">COPIED!</div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-slate-800/50">
+                                <button onclick="copyCmd('${installCmd}', ${idx})" class="bg-indigo-600 hover:bg-indigo-500 text-white font-black py-4 rounded-xl transition-all flex items-center justify-center gap-3 text-xs uppercase tracking-widest">
+                                    <i class="fas fa-terminal"></i> Copy Command
+                                </button>
+                                <a href="${fullUrl}" download class="bg-slate-700 hover:bg-slate-600 text-white font-black py-4 rounded-xl transition-all flex items-center justify-center gap-3 text-xs uppercase tracking-widest border border-slate-600">
+                                    <i class="fas fa-download"></i> Download Pack
+                                </a>
+                            </div>
+                        </div>
+                    </div>`;
+                container.innerHTML += card;
+            });
+
+            searchInput.addEventListener('input', (e) => {
+                const term = e.target.value.toLowerCase();
+                const cards = document.querySelectorAll('.skill-card');
+                let found = 0;
+
+                cards.forEach(card => {
+                    const title = card.getAttribute('data-title');
+                    const tags = card.getAttribute('data-tags');
+                    if (title.includes(term) || tags.includes(term)) {
+                        card.classList.remove('hidden-skill');
+                        found++;
+                    } else {
+                        card.classList.add('hidden-skill');
+                    }
+                });
+                noResults.style.display = found === 0 ? 'block' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>
