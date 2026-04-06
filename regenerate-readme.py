@@ -93,7 +93,7 @@ def _update_index_html(index_data: dict) -> None:
     )
     new_html = re.sub(
         r"const registryData = \{[\s\S]*?\};",
-        f"const registryData = {indented};",
+        lambda _: f"const registryData = {indented};",
         html,
         count=1,
     )
