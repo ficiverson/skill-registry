@@ -10,6 +10,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 INDEX_PATH = ROOT / "index.json"
 README_PATH = ROOT / "README.md"
+INDEX_HTML_PATH = ROOT / "index.html"
 FORGE_REPO = "https://github.com/ficiverson/skills-forge"
 
 
@@ -81,6 +82,24 @@ def _render_skill_table(skills: list[dict], base_url: str) -> str:
     return "\n".join([header, *rows])
 
 
+def _update_index_html(index_data: dict) -> None:
+    import re
+
+    html = INDEX_HTML_PATH.read_text(encoding="utf-8")
+    json_str = json.dumps(index_data, indent=4)
+    indented = "\n".join(
+        "            " + line if i > 0 else line
+        for i, line in enumerate(json_str.split("\n"))
+    )
+    new_html = re.sub(
+        r"const registryData = \{[\s\S]*?\};",
+        f"const registryData = {indented};",
+        html,
+        count=1,
+    )
+    INDEX_HTML_PATH.write_text(new_html, encoding="utf-8")
+
+
 def main() -> int:
     index = json.loads(INDEX_PATH.read_text(encoding="utf-8"))
     skills = index.get("skills", [])
@@ -137,6 +156,7 @@ def main() -> int:
     )
 
     README_PATH.write_text(content, encoding="utf-8")
+    _update_index_html(index)
     return 0
 
 

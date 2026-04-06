@@ -3,8 +3,8 @@ set -euo pipefail
 
 python3 regenerate-readme.py
 
-if ! git diff --quiet -- README.md; then
-  echo "README.md was regenerated. Please review and commit it before pushing."
-  git --no-pager diff -- README.md
+if ! git diff --quiet -- README.md index.html; then
+  echo "README.md or index.html was regenerated. Please review and commit them before pushing."
+  git --no-pager diff -- README.md index.html
   exit 1
 fi
