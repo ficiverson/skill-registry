@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+python3 regenerate-readme.py
+
+if ! git diff --quiet -- README.md; then
+  echo "README.md was regenerated. Please review and commit it before pushing."
+  git --no-pager diff -- README.md
+  exit 1
+fi
