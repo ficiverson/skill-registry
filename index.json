@@ -2,7 +2,7 @@
   "format_version": "1",
   "registry_name": "skill-registry",
   "base_url": "https://raw.githubusercontent.com/ficiverson/skill-registry/main",
-  "updated_at": "2026-04-06T13:46:37+00:00",
+  "updated_at": "2026-04-06T13:54:30+00:00",
   "skills": [
     {
       "category": "evaluation",
@@ -18,6 +18,18 @@
           "version": "1.0.0",
           "path": "packs/evaluation/ai-eng-evaluator-1.0.0.skillpack",
           "sha256": "10d16ba0db7b768219d0adb6c3dd8ea68b62e9f719a0132fdcd2bcf10271c0e6"
+        }
+      ]
+    },
+    {
+      "category": "evaluation",
+      "name": "user-story-test-cases",
+      "latest": "0.1.0",
+      "versions": [
+        {
+          "version": "0.1.0",
+          "path": "packs/evaluation/user-story-test-cases-0.1.0.skillpack",
+          "sha256": "b1bfde6e7fa4823d342148e40ad0e590a978d917c7c3a2009fe13903ccf15a35"
         }
       ]
     }
