@@ -6,15 +6,16 @@ This registry was created and is maintained with [skills-forge](https://github.c
 
 - `format_version`: `1`
 - `base_url`: `https://raw.githubusercontent.com/ficiverson/skill-registry/main`
-- `updated_at`: `2026-04-06T14:20:56+00:00`
-- `skills_count`: `2`
-- `categories`: `evaluation`
+- `updated_at`: `2026-04-06T21:46:28+00:00`
+- `skills_count`: `3`
+- `categories`: `development, evaluation`
 - `owners`: `Fernando Souto`
 
 ## Skills
 
 | Category | Skill | Latest | Owner | Published At | Size | SHA256 | Tags | Description | Download |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `development` | `publish-to-pypi` | `1.0.0` | `` | `2026-04-06T21:46:28+00:00` | `5.4 KB` | `31bbf29e4a56c5d2540b8d4321809d5a70356c86ac874df66cecfb0d9b156a73` |  | Use this skill when preparing a Python project for PyPI publication or setting up automated publishing with GitHub Actions. Triggers on: publish to PyPI, upload package, distribute Python library, pip installable, pyproject.toml setup, PyPI GitHub Action, OIDC trusted publishing, twine upload, package distribution, classifiers, wheel, sdist, build backend, packaging standards. Always use this skill whenever the user mentions publishing a Python package, making something pip-installable, or setting up CI/CD for a Python library. | [download](https://raw.githubusercontent.com/ficiverson/skill-registry/main/packs/development/publish-to-pypi-1.0.0.skillpack) |
 | `evaluation` | `ai-eng-evaluator` | `1.0.0` | `Fernando Souto (me@fernandosouto.dev)` | `2026-04-06T13:43:36+00:00` | `37.6 KB` | `10d16ba0db7b768219d0adb6c3dd8ea68b62e9f719a0132fdcd2bcf10271c0e6` | `ai`, `eng`, `evaluator`, `evaluation`, `evaluate-repo`, `score-candidate`, `grade-challenge`, `review-submission`, `competency-levels-(junior/medior/senior)`, `growth-framework`, `engineering-rubric-works-for-any-language-or-stack`, `not-just-python/langchain` | Evaluates AI engineering code challenge submissions (GitHub repos, zip files, or local folders) against a structured competency matrix and produces a professional PDF report. Triggers on: evaluate repo, score candidate, grade challenge, review submission, competency levels (Junior/Medior/Senior), growth framework, engineering rubric. Works for any language or stack, not just Python/LangChain. | [download](https://raw.githubusercontent.com/ficiverson/skill-registry/main/packs/evaluation/ai-eng-evaluator-1.0.0.skillpack) |
 | `evaluation` | `user-story-test-cases` | `0.1.0` | `Fernando Souto (me@fernandosouto.dev)` | `2026-04-06T13:54:02+00:00` | `1.2 KB` | `b1bfde6e7fa4823d342148e40ad0e590a978d917c7c3a2009fe13903ccf15a35` | `user`, `story`, `test`, `cases`, `evaluation`, `acceptance-criteria`, `edge-cases`, `happy-path`, `negative-tests`, `bdd` | Use this skill when deriving structured test cases from a user story. Triggers on: acceptance criteria, edge cases, happy path, negative tests, BDD. | [download](https://raw.githubusercontent.com/ficiverson/skill-registry/main/packs/evaluation/user-story-test-cases-0.1.0.skillpack) |
 
