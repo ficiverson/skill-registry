@@ -370,10 +370,11 @@
                             <!-- Non-dev option -->
                             <div class="relative">
                                 <p class="text-[10px] font-bold text-emerald-400 uppercase tracking-widest mb-3 ml-1"><i class="fas fa-magic mr-1"></i> Claude / Cowork (Non-Dev)</p>
-                                <a href="cowork://prompt?text=${encodeURIComponent('Hi Claude! Please download and install the skillpack from this URL: ' + fullUrl + ' - You can use the skill-forge CLI or your standard tools to install it.')}" class="w-full relative overflow-hidden bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/30 text-emerald-400 font-black py-4 rounded-2xl transition-all flex flex-col items-center justify-center gap-1 text-[11px] uppercase tracking-widest text-center px-4">
-                                    <div class="flex items-center gap-3"><i class="fas fa-bolt"></i> One-click Install for Cowork</div>
-                                    <span class="text-[8px] text-emerald-500/70 normal-case tracking-normal font-normal">Opens Cowork with an installation prompt</span>
-                                </a>
+                                <button onclick="copyCmd('Hi Claude! Please download and install the skillpack from this URL: ' + '${fullUrl}' + ' - You can use the skill-forge CLI or your standard capabilities to install it.', 'cowork-${idx}')" class="w-full relative overflow-hidden bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/30 text-emerald-400 font-black py-4 rounded-2xl transition-all flex flex-col items-center justify-center gap-1 text-[11px] uppercase tracking-widest text-center px-4">
+                                    <div class="flex items-center gap-3"><i class="fas fa-copy"></i> Copy Prompt for Cowork</div>
+                                    <span class="text-[8px] text-emerald-500/70 normal-case tracking-normal font-normal">Copies the install instructions. Paste directly in Claude.</span>
+                                    <div id="copy-msg-cowork-${idx}" class="copy-success italic bg-emerald-500 text-white">COPIED!</div>
+                                </button>
                             </div>
 
                             <!-- Terminal Option -->
