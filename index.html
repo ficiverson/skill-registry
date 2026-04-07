@@ -142,20 +142,30 @@
                 "format_version": "1",
                 "registry_name": "skill-registry",
                 "base_url": "https://raw.githubusercontent.com/ficiverson/skill-registry/main",
-                "repo_url": "https://github.com/ficiverson/skill-registry.git",
                 "updated_at": "2026-04-07T07:52:17+00:00",
                 "skills": [
                     {
                         "category": "development",
                         "name": "publish-to-pypi",
                         "latest": "1.0.0",
-                        "description": "Prepares Python projects for PyPI publication or automated GitHub Actions workflows. Triggers on: publish to PyPI, twine upload, OIDC trusted publishing, and pyproject.toml setup.",
-                        "tags": ["python", "pypi", "release", "publish"],
+                        "description": "Use this skill when preparing a Python project for PyPI publication or setting\nup automated publishing with GitHub Actions. Triggers on: publish to PyPI,\nupload package, distribute Python library, pip installable, pyproject.toml setup,\nPyPI GitHub Action, OIDC trusted publishing, twine upload, package distribution,\nclassifiers, wheel, sdist, build backend, packaging standards.\nAlways use this skill whenever the user mentions publishing a Python package,\nmaking something pip-installable, or setting up CI/CD for a Python library.",
+                        "tags": [
+                            "python",
+                            "pypi",
+                            "release",
+                            "publish"
+                        ],
+                        "owner": {
+                            "name": "Fernando Souto",
+                            "email": "me@fernandosouto.dev"
+                        },
                         "versions": [
                             {
                                 "version": "1.0.0",
                                 "path": "packs/development/publish-to-pypi-1.0.0.skillpack",
-                                "sha256": "6e89f6921a6f47d7a0783738629fc2fa88cbef4d576d7ce8b105a99a311b5365"
+                                "sha256": "6e89f6921a6f47d7a0783738629fc2fa88cbef4d576d7ce8b105a99a311b5365",
+                                "published_at": "2026-04-06T21:49:35+00:00",
+                                "size_bytes": 5543
                             }
                         ]
                     },
@@ -163,13 +173,39 @@
                         "category": "evaluation",
                         "name": "ai-eng-evaluator",
                         "latest": "1.0.0",
-                        "description": "Evaluates AI engineering challenge submissions against a competency matrix. Produces PDF reports for Junior to Senior levels across any tech stack.",
-                        "tags": ["ai", "evaluation", "score-candidate", "review-submission"],
+                        "description": "Evaluates AI engineering code challenge submissions (GitHub repos, zip files, or local folders) against a structured competency matrix and produces a professional PDF report. Triggers on: evaluate repo, score candidate, grade challenge, review submission, competency levels (Junior/Medior/Senior), growth framework, engineering rubric. Works for any language or stack, not just Python/LangChain.",
+                        "tags": [
+                            "ai",
+                            "eng",
+                            "evaluator",
+                            "evaluation",
+                            "evaluate-repo",
+                            "score-candidate",
+                            "grade-challenge",
+                            "review-submission",
+                            "competency-levels-(junior/medior/senior)",
+                            "growth-framework",
+                            "engineering-rubric-works-for-any-language-or-stack",
+                            "not-just-python/langchain"
+                        ],
+                        "owner": {
+                            "name": "Fernando Souto",
+                            "email": "me@fernandosouto.dev"
+                        },
                         "versions": [
+                            {
+                                "version": "0.2.0",
+                                "path": "packs/evaluation/ai-eng-evaluator-0.2.0.skillpack",
+                                "sha256": "cc49e8d525bb0d163b23e48656961a040014b22ee5789d75a67a73a42ea67f8c",
+                                "published_at": "2026-04-06T13:39:40+00:00",
+                                "size_bytes": 38473
+                            },
                             {
                                 "version": "1.0.0",
                                 "path": "packs/evaluation/ai-eng-evaluator-1.0.0.skillpack",
-                                "sha256": "10d16ba0db7b768219d0adb6c3dd8ea68b62e9f719a0132fdcd2bcf10271c0e6"
+                                "sha256": "10d16ba0db7b768219d0adb6c3dd8ea68b62e9f719a0132fdcd2bcf10271c0e6",
+                                "published_at": "2026-04-06T13:43:36+00:00",
+                                "size_bytes": 38474
                             }
                         ]
                     },
@@ -177,13 +213,30 @@
                         "category": "evaluation",
                         "name": "user-story-test-cases",
                         "latest": "0.1.0",
-                        "description": "Derives structured test cases (happy path, edge cases, BDD) directly from user stories and acceptance criteria.",
-                        "tags": ["user-story", "testing", "bdd", "acceptance-criteria"],
+                        "description": "Use this skill when deriving structured test cases from a user story. Triggers on: acceptance criteria, edge cases, happy path, negative tests, BDD.",
+                        "tags": [
+                            "user",
+                            "story",
+                            "test",
+                            "cases",
+                            "evaluation",
+                            "acceptance-criteria",
+                            "edge-cases",
+                            "happy-path",
+                            "negative-tests",
+                            "bdd"
+                        ],
+                        "owner": {
+                            "name": "Fernando Souto",
+                            "email": "me@fernandosouto.dev"
+                        },
                         "versions": [
                             {
                                 "version": "0.1.0",
                                 "path": "packs/evaluation/user-story-test-cases-0.1.0.skillpack",
-                                "sha256": "b1bfde6e7fa4823d342148e40ad0e590a978d917c7c3a2009fe13903ccf15a35"
+                                "sha256": "b1bfde6e7fa4823d342148e40ad0e590a978d917c7c3a2009fe13903ccf15a35",
+                                "published_at": "2026-04-06T13:54:02+00:00",
+                                "size_bytes": 1221
                             }
                         ]
                     },
@@ -191,13 +244,26 @@
                         "category": "productivity",
                         "name": "email-tone-reviewer",
                         "latest": "1.0.0",
-                        "description": "Reviews draft emails for tone and professionalism. Rewrites content to match specific relationship goals like escalations or cold outreach.",
-                        "tags": ["email", "tone", "communication", "professionalism"],
+                        "description": "Reviews a draft email for tone, clarity, and professionalism, then rewrites it to match the intended relationship and goal. Works for any scenario: escalations, cold outreach, feedback, follow-ups.",
+                        "tags": [
+                            "email",
+                            "tone",
+                            "writing",
+                            "communication",
+                            "professionalism",
+                            "productivity"
+                        ],
+                        "owner": {
+                            "name": "Fernando Souto",
+                            "email": "me@fernandosouto.dev"
+                        },
                         "versions": [
                             {
                                 "version": "1.0.0",
                                 "path": "packs/productivity/email-tone-reviewer-1.0.0.skillpack",
-                                "sha256": "d086fe8f75b228c6a8a19d1f7956787a3678bd4a0835379aba305b6d5460e300"
+                                "sha256": "d086fe8f75b228c6a8a19d1f7956787a3678bd4a0835379aba305b6d5460e300",
+                                "published_at": "2026-04-07T07:51:16+00:00",
+                                "size_bytes": 2620
                             }
                         ]
                     },
@@ -205,13 +271,26 @@
                         "category": "productivity",
                         "name": "meeting-summarizer",
                         "latest": "1.0.0",
-                        "description": "Transforms raw transcripts or voice notes into actionable summaries including TL;DR, decisions, and assigned action items.",
-                        "tags": ["meeting", "summary", "action-items", "notes"],
+                        "description": "Turns raw meeting transcripts, voice-note dumps, or rough bullet notes into a structured summary anyone can act on: TL;DR, decisions, action items with owners, open questions, and next steps.",
+                        "tags": [
+                            "meeting",
+                            "summary",
+                            "productivity",
+                            "action-items",
+                            "transcript",
+                            "notes"
+                        ],
+                        "owner": {
+                            "name": "Fernando Souto",
+                            "email": "me@fernandosouto.dev"
+                        },
                         "versions": [
                             {
                                 "version": "1.0.0",
                                 "path": "packs/productivity/meeting-summarizer-1.0.0.skillpack",
-                                "sha256": "a42d5540ba4f2c06d4bddadc09b443ce0079cd176d49056c8796f111cb7210b1"
+                                "sha256": "a42d5540ba4f2c06d4bddadc09b443ce0079cd176d49056c8796f111cb7210b1",
+                                "published_at": "2026-04-07T07:51:16+00:00",
+                                "size_bytes": 2426
                             }
                         ]
                     },
@@ -219,13 +298,26 @@
                         "category": "productivity",
                         "name": "post-linkedin",
                         "latest": "1.0.0",
-                        "description": "Crafts high-performing LinkedIn posts from raw ideas. Includes scroll-stopping hooks and engagement-calibrated hashtags.",
-                        "tags": ["linkedin", "social", "content", "personal-brand"],
+                        "description": "Crafts high-performing LinkedIn posts from raw ideas, achievements, or lessons learned. Produces scroll-stopping hooks, structured body copy, and targeted hashtags calibrated for reach and engagement.",
+                        "tags": [
+                            "linkedin",
+                            "social",
+                            "content",
+                            "writing",
+                            "personal-brand",
+                            "productivity"
+                        ],
+                        "owner": {
+                            "name": "Fernando Souto",
+                            "email": "me@fernandosouto.dev"
+                        },
                         "versions": [
                             {
                                 "version": "1.0.0",
                                 "path": "packs/productivity/post-linkedin-1.0.0.skillpack",
-                                "sha256": "48765b18cac9fd2726a46555f4ab7ba16fa2aaf912ff330ee50116b89a750cc0"
+                                "sha256": "48765b18cac9fd2726a46555f4ab7ba16fa2aaf912ff330ee50116b89a750cc0",
+                                "published_at": "2026-04-07T07:51:17+00:00",
+                                "size_bytes": 3503
                             }
                         ]
                     },
@@ -233,13 +325,27 @@
                         "category": "productivity",
                         "name": "sprint-grooming",
                         "latest": "1.0.0",
-                        "description": "Transforms feature requests into INVEST-compliant user stories with story points and Definition of Done, ready for Jira or GitHub.",
-                        "tags": ["agile", "scrum", "sprint", "grooming", "jira"],
+                        "description": "Transforms rough ideas, feature requests, or Slack messages into production-ready user stories with acceptance criteria, story point estimates, and definition of done. INVEST-compliant output ready to paste into Jira, Linear, or GitHub Issues.",
+                        "tags": [
+                            "agile",
+                            "scrum",
+                            "user-stories",
+                            "sprint",
+                            "grooming",
+                            "acceptance-criteria",
+                            "backlog"
+                        ],
+                        "owner": {
+                            "name": "Fernando Souto",
+                            "email": "me@fernandosouto.dev"
+                        },
                         "versions": [
                             {
                                 "version": "1.0.0",
                                 "path": "packs/productivity/sprint-grooming-1.0.0.skillpack",
-                                "sha256": "4e7e47485723d1fc8b822ab0d3b08284aa218e7fa68b365fb117f7b348f5aa5a"
+                                "sha256": "4e7e47485723d1fc8b822ab0d3b08284aa218e7fa68b365fb117f7b348f5aa5a",
+                                "published_at": "2026-04-07T07:51:17+00:00",
+                                "size_bytes": 3134
                             }
                         ]
                     },
@@ -247,13 +353,24 @@
                         "category": "testing",
                         "name": "backend-api-tester",
                         "latest": "1.0.0",
-                        "description": "Generates automated backend API tests based on OpenAPI/Swagger specs. Triggers on: integration tests, API contract, and endpoint validation.",
-                        "tags": ["testing", "api", "openapi", "backend"],
+                        "description": "Use this skill when generating or running automated backend API tests based on\nOpenAPI/Swagger specifications and test plans. Triggers on: backend tests, api\ntesting, openapi spec, swagger, integration tests, validate endpoints, API contract.",
+                        "tags": [
+                            "testing",
+                            "api",
+                            "openapi",
+                            "backend-tests"
+                        ],
+                        "owner": {
+                            "name": "Fernando Souto",
+                            "email": "me@fernandosouto.dev"
+                        },
                         "versions": [
                             {
                                 "version": "1.0.0",
                                 "path": "packs/testing/backend-api-tester-1.0.0.skillpack",
-                                "sha256": "ea9ce9454f73069d9dee3b3c6dc52fd2d4a459f2d0f697296234ed3b3c992c51"
+                                "sha256": "ea9ce9454f73069d9dee3b3c6dc52fd2d4a459f2d0f697296234ed3b3c992c51",
+                                "published_at": "2026-04-06T22:03:19+00:00",
+                                "size_bytes": 1724
                             }
                         ]
                     }
