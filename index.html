@@ -63,6 +63,38 @@
             transform: translateY(-4px);
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
+
+        .skeleton-card {
+            background: rgba(30, 41, 59, 0.3);
+            border: 1px solid rgba(51, 65, 85, 0.5);
+            border-radius: 2.5rem;
+            height: 420px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .skeleton-card::after {
+            content: '';
+            display: block;
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.04) 50%, transparent 100%);
+            animation: shimmer 1.5s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        #scroll-sentinel {
+            height: 1px;
+        }
     </style>
 </head>
 
@@ -129,6 +161,7 @@
         </section>
 
         <div id="skills-container" class="grid grid-cols-1 md:grid-cols-2 gap-10"></div>
+        <div id="scroll-sentinel"></div>
 
         <div id="no-results" class="hidden text-center py-20">
             <div class="text-5xl mb-4 text-slate-700">🔍</div>
@@ -427,16 +460,21 @@ Note: If 'skills-forge' is not installed, run 'pip install skills-forge' first.`
                 });
             };
 
-            let cardsHtml = "";
-            registryData.skills.forEach((skill, idx) => {
+            // ── virtual render state ──────────────────────────────────────────
+            const PAGE_SIZE = 24;
+            let filteredSkills = registryData.skills.slice();
+            let renderedCount = 0;
+
+            function buildCard(skill) {
                 const latest = skill.versions.find(v => v.version === skill.latest);
                 const fullUrl = `${registryData.base_url}/${latest.path}`;
                 const installCmd = `skill-forge install ${fullUrl} --sha256 ${latest.sha256}`;
-                const tagsHtml = skill.tags.map(tag => `<span class="tag-pill text-[9px] px-2 py-0.5 rounded-md uppercase font-bold tracking-tighter">#${tag}</span>`).join(' ');
-
-                cardsHtml += `
-                    <div class="skill-card bg-slate-800/30 border border-slate-700/50 rounded-[2.5rem] p-10 flex flex-col h-full relative group shadow-2xl" 
-                         data-title="${skill.name.toLowerCase()}" 
+                const tagsHtml = skill.tags.map(tag =>
+                    `<span class="tag-pill text-[9px] px-2 py-0.5 rounded-md uppercase font-bold tracking-tighter">#${tag}</span>`
+                ).join(' ');
+                return `
+                    <div class="skill-card bg-slate-800/30 border border-slate-700/50 rounded-[2.5rem] p-10 flex flex-col h-full relative group shadow-2xl"
+                         data-title="${skill.name.toLowerCase()}"
                          data-tags="${skill.tags.join(' ').toLowerCase()}">
                         <div class="flex justify-between items-center mb-8">
                             <span class="text-[10px] font-black uppercase tracking-[0.2em] text-indigo-400 bg-indigo-400/5 px-4 py-1.5 rounded-full border border-indigo-400/20">
@@ -449,24 +487,29 @@ Note: If 'skills-forge' is not installed, run 'pip install skills-forge' first.`
                         <div class="flex flex-wrap gap-2 mb-10">${tagsHtml}</div>
                         <div class="space-y-6 mt-auto">
                             <div class="relative">
-                                <p class="text-[10px] font-bold text-emerald-400 uppercase tracking-widest mb-3 ml-1"><i class="fas fa-magic mr-1"></i> Claude / Sandbox (Auto-Fix)</p>
-                                <button onclick="launchClaude('${skill.name}', '${fullUrl}', '${latest.path}', '${latest.sha256}', 'cowork-${idx}')" class="w-full relative overflow-hidden bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/30 text-emerald-400 font-black py-4 rounded-2xl transition-all flex flex-col items-center justify-center gap-1 text-[11px] uppercase tracking-widest text-center px-4">
+                                <p class="text-[10px] font-bold text-emerald-400 uppercase tracking-widest mb-3 ml-1"><i class="fas fa-magic mr-1"></i> Claude / Sandbox</p>
+                                <button data-action="launch"
+                                        data-name="${skill.name}"
+                                        data-url="${fullUrl}"
+                                        data-path="${latest.path}"
+                                        data-sha="${latest.sha256}"
+                                        class="w-full relative overflow-hidden bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/30 text-emerald-400 font-black py-4 rounded-2xl transition-all flex flex-col items-center justify-center gap-1 text-[11px] uppercase tracking-widest text-center px-4">
                                     <div class="flex items-center gap-3"><i class="fas fa-bolt"></i> One-click Install for Claude</div>
                                     <span class="text-[8px] text-emerald-500/70 normal-case tracking-normal font-normal">Copies prompt and opens Claude. Just Paste!</span>
-                                    <div id="copy-msg-cowork-${idx}" class="copy-success italic bg-emerald-500 text-white">PROMPT COPIED!</div>
                                 </button>
                             </div>
                             <div class="relative group/cmd pt-6 border-t border-slate-800/50">
                                 <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 ml-1">CLI / Developer</p>
-                                <div onclick="copyCmd('${installCmd}', ${idx})" class="cursor-pointer bg-black/60 p-6 rounded-2xl border border-slate-800 hover:border-indigo-500/30 transition-all relative">
+                                <div data-action="copy" data-cmd="${installCmd}"
+                                     class="cursor-pointer bg-black/60 p-6 rounded-2xl border border-slate-800 hover:border-indigo-500/30 transition-all relative">
                                     <code class="text-sm text-indigo-400 font-mono block leading-relaxed break-all">
                                         <span class="text-indigo-600">$</span> skill-forge install <span class="text-slate-300">...${latest.path.split('/').pop()}</span>
                                     </code>
-                                    <div id="copy-msg-${idx}" class="copy-success italic">COPIED!</div>
                                 </div>
                             </div>
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <button onclick="copyCmd('${installCmd}', ${idx})" class="bg-indigo-600 hover:bg-indigo-500 text-white font-black py-4 rounded-xl transition-all flex items-center justify-center gap-3 text-xs uppercase tracking-widest">
+                                <button data-action="copy" data-cmd="${installCmd}"
+                                        class="bg-indigo-600 hover:bg-indigo-500 text-white font-black py-4 rounded-xl transition-all flex items-center justify-center gap-3 text-xs uppercase tracking-widest">
                                     <i class="fas fa-terminal"></i> Copy Command
                                 </button>
                                 <a href="${fullUrl}" download class="bg-slate-700 hover:bg-slate-600 text-white font-black py-4 rounded-xl transition-all flex items-center justify-center gap-3 text-xs uppercase tracking-widest border border-slate-600">
@@ -475,20 +518,94 @@ Note: If 'skills-forge' is not installed, run 'pip install skills-forge' first.`
                             </div>
                         </div>
                     </div>`;
-            });
-            container.innerHTML = cardsHtml;
+            }
 
-            searchInput.addEventListener('input', (e) => {
-                const term = e.target.value.toLowerCase();
-                const cards = document.querySelectorAll('.skill-card');
-                let found = 0;
-                cards.forEach(card => {
-                    const matches = card.getAttribute('data-title').includes(term) || card.getAttribute('data-tags').includes(term);
-                    card.classList.toggle('hidden-skill', !matches);
-                    if (matches) found++;
-                });
-                noResults.style.display = found === 0 ? 'block' : 'none';
+            // transient badge injected next to the clicked element, auto-removed
+            function showSuccess(el, message) {
+                const existing = el.querySelector('.copy-success');
+                if (existing) existing.remove();
+                const badge = document.createElement('div');
+                badge.className = 'copy-success';
+                badge.textContent = message;
+                el.style.position = 'relative';
+                el.appendChild(badge);
+                badge.style.display = 'block';
+                setTimeout(() => badge.remove(), 2000);
+            }
+
+            function renderBatch(reset) {
+                if (reset) {
+                    container.innerHTML = '';
+                    renderedCount = 0;
+                }
+                const batch = filteredSkills.slice(renderedCount, renderedCount + PAGE_SIZE);
+                if (!batch.length) return;
+                container.insertAdjacentHTML('beforeend', batch.map(buildCard).join(''));
+                renderedCount += batch.length;
+            }
+
+            // ── event delegation — one listener handles every card action ─────
+            container.addEventListener('click', e => {
+                const target = e.target.closest('[data-action]');
+                if (!target) return;
+                const action = target.dataset.action;
+
+                if (action === 'copy') {
+                    navigator.clipboard.writeText(target.dataset.cmd).then(() => {
+                        showSuccess(target, 'COPIED!');
+                    });
+
+                } else if (action === 'launch') {
+                    const { name, url, path, sha } = target.dataset;
+                    const promptText = `I want to install the '${name}' skill pack.\nPrimary source: ${url}\n\nSince you will receive a 403 error from raw.githubusercontent.com while in your sandbox, follow these steps:\n1. git clone https://github.com/ficiverson/skill-registry.git temp_skill_repo\n2. skill-forge install ./temp_skill_repo/${path} --sha256 ${sha}\n3. rm -rf temp_skill_repo\n\nNote: If 'skills-forge' is not installed, run 'pip install skills-forge' first.`;
+
+                    navigator.clipboard.writeText(promptText).then(() => {
+                        showSuccess(target, 'PROMPT COPIED!');
+
+                        const desktopUrl = `claude://`;
+                        const webUrl = `https://claude.ai/new?q=${encodeURIComponent("I have copied an installation command to my clipboard. Please read it.")}`;
+
+                        let blurred = false;
+                        const onBlur = () => { blurred = true; };
+                        window.addEventListener('blur', onBlur);
+                        window.location.href = desktopUrl;
+
+                        setTimeout(() => {
+                            window.removeEventListener('blur', onBlur);
+                            if (!blurred) window.open(webUrl, '_blank');
+                        }, 1500);
+                    });
+                }
             });
+
+            // ── infinite scroll via IntersectionObserver ──────────────────────
+            const sentinel = document.getElementById('scroll-sentinel');
+            const observer = new IntersectionObserver(entries => {
+                if (entries[0].isIntersecting && renderedCount < filteredSkills.length) {
+                    renderBatch(false);
+                }
+            }, { rootMargin: '200px' });
+            observer.observe(sentinel);
+
+            // ── debounced search — filters the data array, re-renders ─────────
+            let searchTimer;
+            searchInput.addEventListener('input', e => {
+                clearTimeout(searchTimer);
+                searchTimer = setTimeout(() => {
+                    const term = e.target.value.toLowerCase().trim();
+                    filteredSkills = term
+                        ? registryData.skills.filter(s =>
+                            s.name.toLowerCase().includes(term) ||
+                            s.tags.some(t => t.toLowerCase().includes(term)) ||
+                            s.description.toLowerCase().includes(term))
+                        : registryData.skills.slice();
+                    renderBatch(true);
+                    noResults.style.display = filteredSkills.length === 0 ? 'block' : 'none';
+                }, 200);
+            });
+
+            // ── initial paint ─────────────────────────────────────────────────
+            requestAnimationFrame(() => renderBatch(true));
         });
     </script>
 </body>
