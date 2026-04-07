@@ -110,7 +110,7 @@
                     Welcome to the <strong>Skill Registry</strong>. This index is generated automatically using the
                     <a href="https://pypi.org/project/skills-forge/"
                         class="text-indigo-400 hover:underline font-bold">Skills Forge</a>
-                    library by <a href="https://github.com/ficiverson/skills-forge"
+                    crafted by <a href="https://github.com/ficiverson"
                         class="text-indigo-400 hover:underline font-bold">Fernando Souto</a>.
                 </p>
                 <p class="text-slate-300 leading-relaxed italic text-sm">
@@ -398,9 +398,8 @@
                 const promptText = `I want to install the '${skillName}' skill pack.
 Primary source: ${fullUrl}
 
-TROUBLESHOOTING (EGRESS/403):
-If you get an EGRESS_BLOCKED or 403 error from raw.githubusercontent.com, follow these steps:
-1. git clone ${registryData.repo_url} temp_skill_repo
+Since you will receive a 403 error from raw.githubusercontent.com while in your sandbox, follow these steps:
+1. git clone https://github.com/ficiverson/skill-registry.git temp_skill_repo
 2. skill-forge install ./temp_skill_repo/${path} --sha256 ${sha256}
 3. rm -rf temp_skill_repo
 
