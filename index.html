@@ -95,7 +95,7 @@
                 "format_version": "1",
                 "registry_name": "skill-registry",
                 "base_url": "https://raw.githubusercontent.com/ficiverson/skill-registry/main",
-                "updated_at": "2026-04-06T22:03:19+00:00",
+                "updated_at": "2026-04-07T07:52:17+00:00",
                 "skills": [
                     {
                         "category": "development",
@@ -194,6 +194,115 @@
                         ]
                     },
                     {
+                        "category": "productivity",
+                        "name": "email-tone-reviewer",
+                        "latest": "1.0.0",
+                        "description": "Reviews a draft email for tone, clarity, and professionalism, then rewrites it to match the intended relationship and goal. Works for any scenario: escalations, cold outreach, feedback, follow-ups.",
+                        "tags": [
+                            "email",
+                            "tone",
+                            "writing",
+                            "communication",
+                            "professionalism",
+                            "productivity"
+                        ],
+                        "owner": {
+                            "name": "Fernando Souto",
+                            "email": "me@fernandosouto.dev"
+                        },
+                        "versions": [
+                            {
+                                "version": "1.0.0",
+                                "path": "packs/productivity/email-tone-reviewer-1.0.0.skillpack",
+                                "sha256": "d086fe8f75b228c6a8a19d1f7956787a3678bd4a0835379aba305b6d5460e300",
+                                "published_at": "2026-04-07T07:51:16+00:00",
+                                "size_bytes": 2620
+                            }
+                        ]
+                    },
+                    {
+                        "category": "productivity",
+                        "name": "meeting-summarizer",
+                        "latest": "1.0.0",
+                        "description": "Turns raw meeting transcripts, voice-note dumps, or rough bullet notes into a structured summary anyone can act on: TL;DR, decisions, action items with owners, open questions, and next steps.",
+                        "tags": [
+                            "meeting",
+                            "summary",
+                            "productivity",
+                            "action-items",
+                            "transcript",
+                            "notes"
+                        ],
+                        "owner": {
+                            "name": "Fernando Souto",
+                            "email": "me@fernandosouto.dev"
+                        },
+                        "versions": [
+                            {
+                                "version": "1.0.0",
+                                "path": "packs/productivity/meeting-summarizer-1.0.0.skillpack",
+                                "sha256": "a42d5540ba4f2c06d4bddadc09b443ce0079cd176d49056c8796f111cb7210b1",
+                                "published_at": "2026-04-07T07:51:16+00:00",
+                                "size_bytes": 2426
+                            }
+                        ]
+                    },
+                    {
+                        "category": "productivity",
+                        "name": "post-linkedin",
+                        "latest": "1.0.0",
+                        "description": "Crafts high-performing LinkedIn posts from raw ideas, achievements, or lessons learned. Produces scroll-stopping hooks, structured body copy, and targeted hashtags calibrated for reach and engagement.",
+                        "tags": [
+                            "linkedin",
+                            "social",
+                            "content",
+                            "writing",
+                            "personal-brand",
+                            "productivity"
+                        ],
+                        "owner": {
+                            "name": "Fernando Souto",
+                            "email": "me@fernandosouto.dev"
+                        },
+                        "versions": [
+                            {
+                                "version": "1.0.0",
+                                "path": "packs/productivity/post-linkedin-1.0.0.skillpack",
+                                "sha256": "48765b18cac9fd2726a46555f4ab7ba16fa2aaf912ff330ee50116b89a750cc0",
+                                "published_at": "2026-04-07T07:51:17+00:00",
+                                "size_bytes": 3503
+                            }
+                        ]
+                    },
+                    {
+                        "category": "productivity",
+                        "name": "sprint-grooming",
+                        "latest": "1.0.0",
+                        "description": "Transforms rough ideas, feature requests, or Slack messages into production-ready user stories with acceptance criteria, story point estimates, and definition of done. INVEST-compliant output ready to paste into Jira, Linear, or GitHub Issues.",
+                        "tags": [
+                            "agile",
+                            "scrum",
+                            "user-stories",
+                            "sprint",
+                            "grooming",
+                            "acceptance-criteria",
+                            "backlog"
+                        ],
+                        "owner": {
+                            "name": "Fernando Souto",
+                            "email": "me@fernandosouto.dev"
+                        },
+                        "versions": [
+                            {
+                                "version": "1.0.0",
+                                "path": "packs/productivity/sprint-grooming-1.0.0.skillpack",
+                                "sha256": "4e7e47485723d1fc8b822ab0d3b08284aa218e7fa68b365fb117f7b348f5aa5a",
+                                "published_at": "2026-04-07T07:51:17+00:00",
+                                "size_bytes": 3134
+                            }
+                        ]
+                    },
+                    {
                         "category": "testing",
                         "name": "backend-api-tester",
                         "latest": "1.0.0",
@@ -261,11 +370,10 @@
                             <!-- Non-dev option -->
                             <div class="relative">
                                 <p class="text-[10px] font-bold text-emerald-400 uppercase tracking-widest mb-3 ml-1"><i class="fas fa-magic mr-1"></i> Claude / Cowork (Non-Dev)</p>
-                                <button onclick="copyCmd('${fullUrl}', 'cowork-${idx}')" class="w-full relative overflow-hidden bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/30 text-emerald-400 font-black py-4 rounded-2xl transition-all flex items-center justify-center gap-3 text-xs uppercase tracking-widest">
-                                    <i class="fas fa-link"></i> Copy Pack URL
-                                    <div id="copy-msg-cowork-${idx}" class="copy-success italic bg-emerald-500 text-white">COPIED!</div>
-                                </button>
-                                <p class="text-[10px] text-slate-400 mt-2 px-1 leading-relaxed">Paste this URL directly into Cowork or Claude to install instantly without the terminal.</p>
+                                <a href="cowork://prompt?text=${encodeURIComponent('Hi Claude! Please download and install the skillpack from this URL: ' + fullUrl + ' - You can use the skill-forge CLI or your standard tools to install it.')}" class="w-full relative overflow-hidden bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/30 text-emerald-400 font-black py-4 rounded-2xl transition-all flex flex-col items-center justify-center gap-1 text-[11px] uppercase tracking-widest text-center px-4">
+                                    <div class="flex items-center gap-3"><i class="fas fa-bolt"></i> One-click Install for Cowork</div>
+                                    <span class="text-[8px] text-emerald-500/70 normal-case tracking-normal font-normal">Opens Cowork with an installation prompt</span>
+                                </a>
                             </div>
 
                             <!-- Terminal Option -->

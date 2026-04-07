@@ -2,7 +2,7 @@
   "format_version": "1",
   "registry_name": "skill-registry",
   "base_url": "https://raw.githubusercontent.com/ficiverson/skill-registry/main",
-  "updated_at": "2026-04-07T07:51:16+00:00",
+  "updated_at": "2026-04-07T07:52:17+00:00",
   "skills": [
     {
       "category": "development",
@@ -122,7 +122,7 @@
           "version": "1.0.0",
           "path": "packs/productivity/email-tone-reviewer-1.0.0.skillpack",
           "sha256": "d086fe8f75b228c6a8a19d1f7956787a3678bd4a0835379aba305b6d5460e300",
-          "published_at": "2026-04-07T07:51:05+00:00",
+          "published_at": "2026-04-07T07:51:16+00:00",
           "size_bytes": 2620
         }
       ]
@@ -176,7 +176,7 @@
           "version": "1.0.0",
           "path": "packs/productivity/post-linkedin-1.0.0.skillpack",
           "sha256": "48765b18cac9fd2726a46555f4ab7ba16fa2aaf912ff330ee50116b89a750cc0",
-          "published_at": "2026-04-07T07:51:05+00:00",
+          "published_at": "2026-04-07T07:51:17+00:00",
           "size_bytes": 3503
         }
       ]
@@ -204,7 +204,7 @@
           "version": "1.0.0",
           "path": "packs/productivity/sprint-grooming-1.0.0.skillpack",
           "sha256": "4e7e47485723d1fc8b822ab0d3b08284aa218e7fa68b365fb117f7b348f5aa5a",
-          "published_at": "2026-04-07T07:51:05+00:00",
+          "published_at": "2026-04-07T07:51:17+00:00",
           "size_bytes": 3134
         }
       ]
