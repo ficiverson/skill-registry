@@ -406,11 +406,26 @@
                 });
             };
 
+            const skillPrompts = {};
+
             registryData.skills.forEach((skill, idx) => {
                 const latest = skill.versions.find(v => v.version === skill.latest);
                 const fullUrl = `${registryData.base_url}/${latest.path}`;
                 const installCmd = `skill-forge install ${fullUrl} --sha256 ${latest.sha256}`;
-                const cloneCmd = `git clone https://github.com/ficiverson/skill-registry.git && skill-forge install skill-registry/${latest.path} --sha256 ${latest.sha256}`;
+
+                skillPrompts[idx] = [
+                    `I want you to install a new skill called "${skill.name}" so you can help me better with tasks like: ${skill.description}`,
+                    ``,
+                    `Please install it by running this command:`,
+                    `skill-forge install ${fullUrl} --sha256 ${latest.sha256}`,
+                    ``,
+                    `If that URL is blocked, clone the registry first and install locally:`,
+                    `git clone https://github.com/ficiverson/skill-registry.git`,
+                    `skill-forge install skill-registry/${latest.path} --sha256 ${latest.sha256}`,
+                    ``,
+                    `Once done, confirm the skill is installed and ready.`
+                ].join('\n');
+
 
                 const tagsHtml = skill.tags.map(tag =>
                     `<span class="tag-pill text-[9px] px-2 py-0.5 rounded-md uppercase font-bold tracking-tighter">#${tag}</span>`
@@ -433,7 +448,7 @@
                             <!-- Non-dev option -->
                             <div class="relative">
                                 <p class="text-[10px] font-bold text-emerald-400 uppercase tracking-widest mb-3 ml-1"><i class="fas fa-magic mr-1"></i> Claude / Cowork (Non-Dev)</p>
-                                <button onclick="launchClaude('I want you to install a new skill called &quot;${skill.name}&quot; so you can help me better. This skill is hosted at this URL: ${fullUrl}\n\nPlease install it using the skill-forge tool. The exact command is:\nskill-forge install ${fullUrl} --sha256 ${latest.sha256}\n\nIf that URL does not work (it might be blocked), you can download the whole registry first with:\ngit clone https://github.com/ficiverson/skill-registry.git\n\nAnd then install from the local file:\nskill-forge install skill-registry/${latest.path} --sha256 ${latest.sha256}\n\nOnce installed, confirm it is ready to use.', 'cowork-${idx}')" class="w-full relative overflow-hidden bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/30 text-emerald-400 font-black py-4 rounded-2xl transition-all flex flex-col items-center justify-center gap-1 text-[11px] uppercase tracking-widest text-center px-4">
+                                <button onclick="launchClaude(skillPrompts[${idx}], 'cowork-${idx}')" class="w-full relative overflow-hidden bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/30 text-emerald-400 font-black py-4 rounded-2xl transition-all flex flex-col items-center justify-center gap-1 text-[11px] uppercase tracking-widest text-center px-4">
                                     <div class="flex items-center gap-3"><i class="fas fa-bolt"></i> One-click Install for Cowork</div>
                                     <span class="text-[8px] text-emerald-500/70 normal-case tracking-normal font-normal">Copies prompt and opens Claude. Just Paste!</span>
                                     <div id="copy-msg-cowork-${idx}" class="copy-success italic bg-emerald-500 text-white">COPIED!</div>
