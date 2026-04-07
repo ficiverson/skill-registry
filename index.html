@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,43 +21,66 @@
             font-weight: bold;
             animation: fadeInOut 2s forwards;
         }
+
         @keyframes fadeInOut {
-            0% { opacity: 0; transform: translateY(5px); }
-            15% { opacity: 1; transform: translateY(0); }
-            85% { opacity: 1; transform: translateY(0); }
-            100% { opacity: 0; transform: translateY(-5px); }
+            0% {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+
+            15% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            85% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-5px);
+            }
         }
+
         .tag-pill {
             background: rgba(79, 70, 229, 0.1);
             border: 1px solid rgba(79, 70, 229, 0.2);
             color: #818cf8;
         }
-        .hidden-skill { display: none !important; }
+
+        .hidden-skill {
+            display: none !important;
+        }
     </style>
 </head>
+
 <body class="bg-slate-900 text-slate-100 min-h-screen font-sans">
 
     <header class="border-b border-slate-800 bg-slate-900/50 backdrop-blur-md sticky top-0 z-50">
         <div class="max-w-6xl mx-auto px-6 py-4 flex flex-wrap gap-4 justify-between items-center">
             <div class="flex items-center gap-3">
                 <div class="bg-indigo-600 p-2 rounded-lg text-2xl shadow-lg shadow-indigo-500/20">⚒️</div>
-                <h1 class="text-xl font-bold tracking-tight uppercase hidden sm:block">Skill Registry <span class="text-indigo-400">0.1.0</span></h1>
+                <h1 class="text-xl font-bold tracking-tight uppercase hidden sm:block">Skill Registry <span
+                        class="text-indigo-400">0.1.0</span></h1>
             </div>
-            
+
             <div class="flex flex-1 max-w-2xl items-center gap-4 justify-end">
                 <div class="relative flex-1">
                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-500">
                         <i class="fas fa-search text-xs"></i>
                     </div>
-                    <input type="text" id="skill-search" 
-                        placeholder="Search skills..." 
+                    <input type="text" id="skill-search" placeholder="Search skills..."
                         class="w-full bg-slate-800/50 border border-slate-700 rounded-xl py-2 pl-9 pr-4 focus:outline-none focus:border-indigo-500 transition-all text-sm text-white placeholder-slate-500">
                 </div>
 
-                <a href="https://pypi.org/project/skills-forge/" class="text-[10px] font-black bg-slate-800 hover:bg-slate-700 px-4 py-2.5 rounded-xl transition-all border border-slate-700 whitespace-nowrap tracking-widest uppercase">
+                <a href="https://pypi.org/project/skills-forge/"
+                    class="text-[10px] font-black bg-slate-800 hover:bg-slate-700 px-4 py-2.5 rounded-xl transition-all border border-slate-700 whitespace-nowrap tracking-widest uppercase">
                     <i class="fab fa-python mr-2"></i> PyPI Package
                 </a>
-                <a href="https://github.com/ficiverson/skills-forge" class="text-[10px] font-black bg-slate-800 hover:bg-slate-700 px-4 py-2.5 rounded-xl transition-all border border-slate-700 whitespace-nowrap tracking-widest uppercase">
+                <a href="https://github.com/ficiverson/skills-forge"
+                    class="text-[10px] font-black bg-slate-800 hover:bg-slate-700 px-4 py-2.5 rounded-xl transition-all border border-slate-700 whitespace-nowrap tracking-widest uppercase">
                     <i class="fab fa-github mr-2"></i> Forge repository
                 </a>
             </div>
@@ -65,14 +89,25 @@
 
     <main class="max-w-6xl mx-auto px-6 py-12">
         <section class="mb-12 text-center md:text-left">
-            <h2 class="text-5xl font-black mb-4 text-white tracking-tight">Forge your <span class="text-indigo-500 italic">Workflow.</span></h2>
-            
+            <h2 class="text-5xl font-black mb-4 text-white tracking-tight">Forge your <span
+                    class="text-indigo-500 italic">Workflow.</span></h2>
+
             <div class="bg-indigo-950/20 border-l-4 border-indigo-500 p-6 my-8 rounded-r-xl space-y-4">
                 <p class="text-slate-300 leading-relaxed italic">
-                    Welcome to the <strong>Skill Registry</strong>. This entire index is generated and maintained automatically using the <a href="https://pypi.org/project/skills-forge/" class="text-indigo-400 hover:underline font-bold">Skills Forge</a> library, crafted by <a href="https://github.com/ficiverson/skills-forge" class="text-indigo-400 hover:underline font-bold">Fernando Souto</a>.
+                    Welcome to the <strong>Skill Registry</strong>. This entire index is generated and maintained
+                    automatically using the <a href="https://pypi.org/project/skills-forge/"
+                        class="text-indigo-400 hover:underline font-bold">Skills Forge</a> library, crafted by <a
+                        href="https://github.com/ficiverson/skills-forge"
+                        class="text-indigo-400 hover:underline font-bold">Fernando Souto</a>.
                 </p>
                 <p class="text-slate-300 leading-relaxed italic">
-                    The <strong>Skill Forge</strong> framework is a distribution ecosystem for AI capabilities. It allows engineers to package specialized knowledge, architectural patterns, and technical workflows into deterministic <code>.skillpack</code> artifacts. By using a standard GitHub repository as a decentralized registry, teams can version, discover, and share these skills securely via SHA256 checksums. Once installed via the CLI, these packs empower AI agents like <strong>Claude Code</strong> with rich, context-aware expertise specifically tailored to your technological stack.
+                    The <strong>Skill Forge</strong> framework is a distribution ecosystem for AI capabilities. It
+                    allows engineers to package specialized knowledge, architectural patterns, and technical workflows
+                    into deterministic <code>.skillpack</code> artifacts. By using a standard GitHub repository as a
+                    decentralized registry, teams can version, discover, and share these skills securely via SHA256
+                    checksums. Once installed via the CLI, these packs empower AI agents like <strong>Claude
+                        Code</strong> with rich, context-aware expertise specifically tailored to your technological
+                    stack.
                 </p>
             </div>
 
@@ -82,7 +117,7 @@
         </section>
 
         <div id="skills-container" class="grid grid-cols-1 md:grid-cols-2 gap-10"></div>
-        
+
         <div id="no-results" class="hidden text-center py-20">
             <div class="text-5xl mb-4 text-slate-700">🔍</div>
             <p class="text-slate-500 italic">No matches found for your current search.</p>
@@ -344,12 +379,31 @@
                 });
             };
 
+            window.launchClaude = (promptText) => {
+                const encodedPrompt = encodeURIComponent(promptText);
+                const desktopUrl = `claude://desktop/new?q=${encodedPrompt}`;
+                const webUrl = `https://claude.ai/new?q=${encodedPrompt}`;
+
+                let blurred = false;
+                const onBlur = () => { blurred = true; };
+                window.addEventListener('blur', onBlur);
+
+                window.location.href = desktopUrl;
+
+                setTimeout(() => {
+                    window.removeEventListener('blur', onBlur);
+                    if (!blurred) {
+                        window.open(webUrl, '_blank');
+                    }
+                }, 1500);
+            };
+
             registryData.skills.forEach((skill, idx) => {
                 const latest = skill.versions.find(v => v.version === skill.latest);
                 const fullUrl = `${registryData.base_url}/${latest.path}`;
                 const installCmd = `skill-forge install ${fullUrl} --sha256 ${latest.sha256}`;
-                
-                const tagsHtml = skill.tags.map(tag => 
+
+                const tagsHtml = skill.tags.map(tag =>
                     `<span class="tag-pill text-[9px] px-2 py-0.5 rounded-md uppercase font-bold tracking-tighter">#${tag}</span>`
                 ).join(' ');
 
@@ -370,10 +424,9 @@
                             <!-- Non-dev option -->
                             <div class="relative">
                                 <p class="text-[10px] font-bold text-emerald-400 uppercase tracking-widest mb-3 ml-1"><i class="fas fa-magic mr-1"></i> Claude / Cowork (Non-Dev)</p>
-                                <button onclick="copyCmd('Hi Claude! Please download and install the skillpack from this URL: ' + '${fullUrl}' + ' - You can use the skill-forge CLI or your standard capabilities to install it.', 'cowork-${idx}')" class="w-full relative overflow-hidden bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/30 text-emerald-400 font-black py-4 rounded-2xl transition-all flex flex-col items-center justify-center gap-1 text-[11px] uppercase tracking-widest text-center px-4">
-                                    <div class="flex items-center gap-3"><i class="fas fa-copy"></i> Copy Prompt for Cowork</div>
-                                    <span class="text-[8px] text-emerald-500/70 normal-case tracking-normal font-normal">Copies the install instructions. Paste directly in Claude.</span>
-                                    <div id="copy-msg-cowork-${idx}" class="copy-success italic bg-emerald-500 text-white">COPIED!</div>
+                                <button onclick="launchClaude('Install this skill: ' + '${fullUrl}' + '\\nIf needed, first run \\'pip install skills-forge\\', then \\'skill-forge install ' + '${fullUrl}' + '\\'')" class="w-full relative overflow-hidden bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/30 text-emerald-400 font-black py-4 rounded-2xl transition-all flex flex-col items-center justify-center gap-1 text-[11px] uppercase tracking-widest text-center px-4">
+                                    <div class="flex items-center gap-3"><i class="fas fa-bolt"></i> One-click Install for Cowork</div>
+                                    <span class="text-[8px] text-emerald-500/70 normal-case tracking-normal font-normal">Opens Claude Desktop (or Web fallback)</span>
                                 </button>
                             </div>
 
@@ -420,4 +473,5 @@
         });
     </script>
 </body>
+
 </html>
