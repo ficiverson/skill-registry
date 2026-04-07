@@ -228,8 +228,10 @@
             window.copyCmd = (text, id) => {
                 navigator.clipboard.writeText(text).then(() => {
                     const el = document.getElementById(`copy-msg-${id}`);
-                    el.style.display = 'block';
-                    setTimeout(() => { el.style.display = 'none'; }, 2000);
+                    if (el) {
+                        el.style.display = 'block';
+                        setTimeout(() => { el.style.display = 'none'; }, 2000);
+                    }
                 });
             };
 
@@ -256,8 +258,19 @@
                         <p class="text-slate-400 mb-6 leading-relaxed text-sm italic">"${skill.description}"</p>
                         <div class="flex flex-wrap gap-2 mb-10">${tagsHtml}</div>
                         <div class="space-y-6 mt-auto">
-                            <div class="relative group/cmd">
-                                <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 ml-1">Terminal Installation</p>
+                            <!-- Non-dev option -->
+                            <div class="relative">
+                                <p class="text-[10px] font-bold text-emerald-400 uppercase tracking-widest mb-3 ml-1"><i class="fas fa-magic mr-1"></i> Claude / Cowork (Non-Dev)</p>
+                                <button onclick="copyCmd('${fullUrl}', 'cowork-${idx}')" class="w-full relative overflow-hidden bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/30 text-emerald-400 font-black py-4 rounded-2xl transition-all flex items-center justify-center gap-3 text-xs uppercase tracking-widest">
+                                    <i class="fas fa-link"></i> Copy Pack URL
+                                    <div id="copy-msg-cowork-${idx}" class="copy-success italic bg-emerald-500 text-white">COPIED!</div>
+                                </button>
+                                <p class="text-[10px] text-slate-400 mt-2 px-1 leading-relaxed">Paste this URL directly into Cowork or Claude to install instantly without the terminal.</p>
+                            </div>
+
+                            <!-- Terminal Option -->
+                            <div class="relative group/cmd pt-6 border-t border-slate-800/50">
+                                <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 ml-1">CLI / Developer</p>
                                 <div onclick="copyCmd('${installCmd}', ${idx})" class="cursor-pointer bg-black/60 p-6 rounded-2xl border border-slate-800 hover:border-indigo-500/30 transition-all relative">
                                     <code class="text-sm text-indigo-400 font-mono block leading-relaxed break-all">
                                         <span class="text-indigo-600">$</span> skill-forge install <span class="text-slate-300">...${latest.path.split('/').pop()}</span>
@@ -265,7 +278,7 @@
                                     <div id="copy-msg-${idx}" class="copy-success italic">COPIED!</div>
                                 </div>
                             </div>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-slate-800/50">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <button onclick="copyCmd('${installCmd}', ${idx})" class="bg-indigo-600 hover:bg-indigo-500 text-white font-black py-4 rounded-xl transition-all flex items-center justify-center gap-3 text-xs uppercase tracking-widest">
                                     <i class="fas fa-terminal"></i> Copy Command
                                 </button>
