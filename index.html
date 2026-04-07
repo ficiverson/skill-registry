@@ -20,6 +20,7 @@
             font-size: 10px;
             font-weight: bold;
             animation: fadeInOut 2s forwards;
+            z-index: 20;
         }
 
         @keyframes fadeInOut {
@@ -53,6 +54,15 @@
         .hidden-skill {
             display: none !important;
         }
+
+        .skill-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
     </style>
 </head>
 
@@ -62,8 +72,11 @@
         <div class="max-w-6xl mx-auto px-6 py-4 flex flex-wrap gap-4 justify-between items-center">
             <div class="flex items-center gap-3">
                 <div class="bg-indigo-600 p-2 rounded-lg text-2xl shadow-lg shadow-indigo-500/20">⚒️</div>
-                <h1 class="text-xl font-bold tracking-tight uppercase hidden sm:block">Skill Registry <span
-                        class="text-indigo-400">0.1.0</span></h1>
+                <div>
+                    <h1 class="text-xl font-bold tracking-tight uppercase hidden sm:block">Skill Registry <span
+                            class="text-indigo-400">0.1.0</span></h1>
+                    <p id="last-updated" class="text-[9px] text-slate-500 font-mono uppercase tracking-widest"></p>
+                </div>
             </div>
 
             <div class="flex flex-1 max-w-2xl items-center gap-4 justify-end">
@@ -71,15 +84,15 @@
                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-500">
                         <i class="fas fa-search text-xs"></i>
                     </div>
-                    <input type="text" id="skill-search" placeholder="Search skills..."
+                    <input type="text" id="skill-search" placeholder="Search skills or tags..."
                         class="w-full bg-slate-800/50 border border-slate-700 rounded-xl py-2 pl-9 pr-4 focus:outline-none focus:border-indigo-500 transition-all text-sm text-white placeholder-slate-500">
                 </div>
 
-                <a href="https://pypi.org/project/skills-forge/"
+                <a href="https://pypi.org/project/skills-forge/" target="_blank"
                     class="text-[10px] font-black bg-slate-800 hover:bg-slate-700 px-4 py-2.5 rounded-xl transition-all border border-slate-700 whitespace-nowrap tracking-widest uppercase">
-                    <i class="fab fa-python mr-2"></i> PyPI Package
+                    <i class="fab fa-python mr-2"></i> PyPI package
                 </a>
-                <a href="https://github.com/ficiverson/skills-forge"
+                <a href="https://github.com/ficiverson/skills-forge" target="_blank"
                     class="text-[10px] font-black bg-slate-800 hover:bg-slate-700 px-4 py-2.5 rounded-xl transition-all border border-slate-700 whitespace-nowrap tracking-widest uppercase">
                     <i class="fab fa-github mr-2"></i> Forge repository
                 </a>
@@ -94,13 +107,13 @@
 
             <div class="bg-indigo-950/20 border-l-4 border-indigo-500 p-6 my-8 rounded-r-xl space-y-4">
                 <p class="text-slate-300 leading-relaxed italic">
-                    Welcome to the <strong>Skill Registry</strong>. This entire index is generated and maintained
-                    automatically using the <a href="https://pypi.org/project/skills-forge/"
-                        class="text-indigo-400 hover:underline font-bold">Skills Forge</a> library, crafted by <a
-                        href="https://github.com/ficiverson/skills-forge"
+                    Welcome to the <strong>Skill Registry</strong>. This index is generated automatically using the
+                    <a href="https://pypi.org/project/skills-forge/"
+                        class="text-indigo-400 hover:underline font-bold">Skills Forge</a>
+                    library by <a href="https://github.com/ficiverson/skills-forge"
                         class="text-indigo-400 hover:underline font-bold">Fernando Souto</a>.
                 </p>
-                <p class="text-slate-300 leading-relaxed italic">
+                <p class="text-slate-300 leading-relaxed italic text-sm">
                     The <strong>Skill Forge</strong> framework is a distribution ecosystem for AI capabilities. It
                     allows engineers to package specialized knowledge, architectural patterns, and technical workflows
                     into deterministic <code>.skillpack</code> artifacts. By using a standard GitHub repository as a
@@ -110,7 +123,6 @@
                     stack.
                 </p>
             </div>
-
             <p class="text-slate-400 text-lg max-w-2xl leading-relaxed">
                 Expert skills by <strong>Fernando Souto</strong>. All available packs are listed below for your forge.
             </p>
@@ -130,30 +142,20 @@
                 "format_version": "1",
                 "registry_name": "skill-registry",
                 "base_url": "https://raw.githubusercontent.com/ficiverson/skill-registry/main",
+                "repo_url": "https://github.com/ficiverson/skill-registry.git",
                 "updated_at": "2026-04-07T07:52:17+00:00",
                 "skills": [
                     {
                         "category": "development",
                         "name": "publish-to-pypi",
                         "latest": "1.0.0",
-                        "description": "Use this skill when preparing a Python project for PyPI publication or setting\nup automated publishing with GitHub Actions. Triggers on: publish to PyPI,\nupload package, distribute Python library, pip installable, pyproject.toml setup,\nPyPI GitHub Action, OIDC trusted publishing, twine upload, package distribution,\nclassifiers, wheel, sdist, build backend, packaging standards.\nAlways use this skill whenever the user mentions publishing a Python package,\nmaking something pip-installable, or setting up CI/CD for a Python library.",
-                        "tags": [
-                            "python",
-                            "pypi",
-                            "release",
-                            "publish"
-                        ],
-                        "owner": {
-                            "name": "Fernando Souto",
-                            "email": "me@fernandosouto.dev"
-                        },
+                        "description": "Prepares Python projects for PyPI publication or automated GitHub Actions workflows. Triggers on: publish to PyPI, twine upload, OIDC trusted publishing, and pyproject.toml setup.",
+                        "tags": ["python", "pypi", "release", "publish"],
                         "versions": [
                             {
                                 "version": "1.0.0",
                                 "path": "packs/development/publish-to-pypi-1.0.0.skillpack",
-                                "sha256": "6e89f6921a6f47d7a0783738629fc2fa88cbef4d576d7ce8b105a99a311b5365",
-                                "published_at": "2026-04-06T21:49:35+00:00",
-                                "size_bytes": 5543
+                                "sha256": "6e89f6921a6f47d7a0783738629fc2fa88cbef4d576d7ce8b105a99a311b5365"
                             }
                         ]
                     },
@@ -161,39 +163,13 @@
                         "category": "evaluation",
                         "name": "ai-eng-evaluator",
                         "latest": "1.0.0",
-                        "description": "Evaluates AI engineering code challenge submissions (GitHub repos, zip files, or local folders) against a structured competency matrix and produces a professional PDF report. Triggers on: evaluate repo, score candidate, grade challenge, review submission, competency levels (Junior/Medior/Senior), growth framework, engineering rubric. Works for any language or stack, not just Python/LangChain.",
-                        "tags": [
-                            "ai",
-                            "eng",
-                            "evaluator",
-                            "evaluation",
-                            "evaluate-repo",
-                            "score-candidate",
-                            "grade-challenge",
-                            "review-submission",
-                            "competency-levels-(junior/medior/senior)",
-                            "growth-framework",
-                            "engineering-rubric-works-for-any-language-or-stack",
-                            "not-just-python/langchain"
-                        ],
-                        "owner": {
-                            "name": "Fernando Souto",
-                            "email": "me@fernandosouto.dev"
-                        },
+                        "description": "Evaluates AI engineering challenge submissions against a competency matrix. Produces PDF reports for Junior to Senior levels across any tech stack.",
+                        "tags": ["ai", "evaluation", "score-candidate", "review-submission"],
                         "versions": [
-                            {
-                                "version": "0.2.0",
-                                "path": "packs/evaluation/ai-eng-evaluator-0.2.0.skillpack",
-                                "sha256": "cc49e8d525bb0d163b23e48656961a040014b22ee5789d75a67a73a42ea67f8c",
-                                "published_at": "2026-04-06T13:39:40+00:00",
-                                "size_bytes": 38473
-                            },
                             {
                                 "version": "1.0.0",
                                 "path": "packs/evaluation/ai-eng-evaluator-1.0.0.skillpack",
-                                "sha256": "10d16ba0db7b768219d0adb6c3dd8ea68b62e9f719a0132fdcd2bcf10271c0e6",
-                                "published_at": "2026-04-06T13:43:36+00:00",
-                                "size_bytes": 38474
+                                "sha256": "10d16ba0db7b768219d0adb6c3dd8ea68b62e9f719a0132fdcd2bcf10271c0e6"
                             }
                         ]
                     },
@@ -201,30 +177,13 @@
                         "category": "evaluation",
                         "name": "user-story-test-cases",
                         "latest": "0.1.0",
-                        "description": "Use this skill when deriving structured test cases from a user story. Triggers on: acceptance criteria, edge cases, happy path, negative tests, BDD.",
-                        "tags": [
-                            "user",
-                            "story",
-                            "test",
-                            "cases",
-                            "evaluation",
-                            "acceptance-criteria",
-                            "edge-cases",
-                            "happy-path",
-                            "negative-tests",
-                            "bdd"
-                        ],
-                        "owner": {
-                            "name": "Fernando Souto",
-                            "email": "me@fernandosouto.dev"
-                        },
+                        "description": "Derives structured test cases (happy path, edge cases, BDD) directly from user stories and acceptance criteria.",
+                        "tags": ["user-story", "testing", "bdd", "acceptance-criteria"],
                         "versions": [
                             {
                                 "version": "0.1.0",
                                 "path": "packs/evaluation/user-story-test-cases-0.1.0.skillpack",
-                                "sha256": "b1bfde6e7fa4823d342148e40ad0e590a978d917c7c3a2009fe13903ccf15a35",
-                                "published_at": "2026-04-06T13:54:02+00:00",
-                                "size_bytes": 1221
+                                "sha256": "b1bfde6e7fa4823d342148e40ad0e590a978d917c7c3a2009fe13903ccf15a35"
                             }
                         ]
                     },
@@ -232,26 +191,13 @@
                         "category": "productivity",
                         "name": "email-tone-reviewer",
                         "latest": "1.0.0",
-                        "description": "Reviews a draft email for tone, clarity, and professionalism, then rewrites it to match the intended relationship and goal. Works for any scenario: escalations, cold outreach, feedback, follow-ups.",
-                        "tags": [
-                            "email",
-                            "tone",
-                            "writing",
-                            "communication",
-                            "professionalism",
-                            "productivity"
-                        ],
-                        "owner": {
-                            "name": "Fernando Souto",
-                            "email": "me@fernandosouto.dev"
-                        },
+                        "description": "Reviews draft emails for tone and professionalism. Rewrites content to match specific relationship goals like escalations or cold outreach.",
+                        "tags": ["email", "tone", "communication", "professionalism"],
                         "versions": [
                             {
                                 "version": "1.0.0",
                                 "path": "packs/productivity/email-tone-reviewer-1.0.0.skillpack",
-                                "sha256": "d086fe8f75b228c6a8a19d1f7956787a3678bd4a0835379aba305b6d5460e300",
-                                "published_at": "2026-04-07T07:51:16+00:00",
-                                "size_bytes": 2620
+                                "sha256": "d086fe8f75b228c6a8a19d1f7956787a3678bd4a0835379aba305b6d5460e300"
                             }
                         ]
                     },
@@ -259,26 +205,13 @@
                         "category": "productivity",
                         "name": "meeting-summarizer",
                         "latest": "1.0.0",
-                        "description": "Turns raw meeting transcripts, voice-note dumps, or rough bullet notes into a structured summary anyone can act on: TL;DR, decisions, action items with owners, open questions, and next steps.",
-                        "tags": [
-                            "meeting",
-                            "summary",
-                            "productivity",
-                            "action-items",
-                            "transcript",
-                            "notes"
-                        ],
-                        "owner": {
-                            "name": "Fernando Souto",
-                            "email": "me@fernandosouto.dev"
-                        },
+                        "description": "Transforms raw transcripts or voice notes into actionable summaries including TL;DR, decisions, and assigned action items.",
+                        "tags": ["meeting", "summary", "action-items", "notes"],
                         "versions": [
                             {
                                 "version": "1.0.0",
                                 "path": "packs/productivity/meeting-summarizer-1.0.0.skillpack",
-                                "sha256": "a42d5540ba4f2c06d4bddadc09b443ce0079cd176d49056c8796f111cb7210b1",
-                                "published_at": "2026-04-07T07:51:16+00:00",
-                                "size_bytes": 2426
+                                "sha256": "a42d5540ba4f2c06d4bddadc09b443ce0079cd176d49056c8796f111cb7210b1"
                             }
                         ]
                     },
@@ -286,26 +219,13 @@
                         "category": "productivity",
                         "name": "post-linkedin",
                         "latest": "1.0.0",
-                        "description": "Crafts high-performing LinkedIn posts from raw ideas, achievements, or lessons learned. Produces scroll-stopping hooks, structured body copy, and targeted hashtags calibrated for reach and engagement.",
-                        "tags": [
-                            "linkedin",
-                            "social",
-                            "content",
-                            "writing",
-                            "personal-brand",
-                            "productivity"
-                        ],
-                        "owner": {
-                            "name": "Fernando Souto",
-                            "email": "me@fernandosouto.dev"
-                        },
+                        "description": "Crafts high-performing LinkedIn posts from raw ideas. Includes scroll-stopping hooks and engagement-calibrated hashtags.",
+                        "tags": ["linkedin", "social", "content", "personal-brand"],
                         "versions": [
                             {
                                 "version": "1.0.0",
                                 "path": "packs/productivity/post-linkedin-1.0.0.skillpack",
-                                "sha256": "48765b18cac9fd2726a46555f4ab7ba16fa2aaf912ff330ee50116b89a750cc0",
-                                "published_at": "2026-04-07T07:51:17+00:00",
-                                "size_bytes": 3503
+                                "sha256": "48765b18cac9fd2726a46555f4ab7ba16fa2aaf912ff330ee50116b89a750cc0"
                             }
                         ]
                     },
@@ -313,27 +233,13 @@
                         "category": "productivity",
                         "name": "sprint-grooming",
                         "latest": "1.0.0",
-                        "description": "Transforms rough ideas, feature requests, or Slack messages into production-ready user stories with acceptance criteria, story point estimates, and definition of done. INVEST-compliant output ready to paste into Jira, Linear, or GitHub Issues.",
-                        "tags": [
-                            "agile",
-                            "scrum",
-                            "user-stories",
-                            "sprint",
-                            "grooming",
-                            "acceptance-criteria",
-                            "backlog"
-                        ],
-                        "owner": {
-                            "name": "Fernando Souto",
-                            "email": "me@fernandosouto.dev"
-                        },
+                        "description": "Transforms feature requests into INVEST-compliant user stories with story points and Definition of Done, ready for Jira or GitHub.",
+                        "tags": ["agile", "scrum", "sprint", "grooming", "jira"],
                         "versions": [
                             {
                                 "version": "1.0.0",
                                 "path": "packs/productivity/sprint-grooming-1.0.0.skillpack",
-                                "sha256": "4e7e47485723d1fc8b822ab0d3b08284aa218e7fa68b365fb117f7b348f5aa5a",
-                                "published_at": "2026-04-07T07:51:17+00:00",
-                                "size_bytes": 3134
+                                "sha256": "4e7e47485723d1fc8b822ab0d3b08284aa218e7fa68b365fb117f7b348f5aa5a"
                             }
                         ]
                     },
@@ -341,24 +247,13 @@
                         "category": "testing",
                         "name": "backend-api-tester",
                         "latest": "1.0.0",
-                        "description": "Use this skill when generating or running automated backend API tests based on\nOpenAPI/Swagger specifications and test plans. Triggers on: backend tests, api\ntesting, openapi spec, swagger, integration tests, validate endpoints, API contract.",
-                        "tags": [
-                            "testing",
-                            "api",
-                            "openapi",
-                            "backend-tests"
-                        ],
-                        "owner": {
-                            "name": "Fernando Souto",
-                            "email": "me@fernandosouto.dev"
-                        },
+                        "description": "Generates automated backend API tests based on OpenAPI/Swagger specs. Triggers on: integration tests, API contract, and endpoint validation.",
+                        "tags": ["testing", "api", "openapi", "backend"],
                         "versions": [
                             {
                                 "version": "1.0.0",
                                 "path": "packs/testing/backend-api-tester-1.0.0.skillpack",
-                                "sha256": "ea9ce9454f73069d9dee3b3c6dc52fd2d4a459f2d0f697296234ed3b3c992c51",
-                                "published_at": "2026-04-06T22:03:19+00:00",
-                                "size_bytes": 1724
+                                "sha256": "ea9ce9454f73069d9dee3b3c6dc52fd2d4a459f2d0f697296234ed3b3c992c51"
                             }
                         ]
                     }
@@ -368,6 +263,9 @@
             const container = document.getElementById('skills-container');
             const searchInput = document.getElementById('skill-search');
             const noResults = document.getElementById('no-results');
+            const lastUpdatedEl = document.getElementById('last-updated');
+
+            if (lastUpdatedEl) lastUpdatedEl.innerText = `Registry Updated: ${new Date(registryData.updated_at).toLocaleDateString()}`;
 
             window.copyCmd = (text, id) => {
                 navigator.clipboard.writeText(text).then(() => {
@@ -379,7 +277,18 @@
                 });
             };
 
-            window.launchClaude = (promptText, id) => {
+            window.launchClaude = (skillName, fullUrl, path, sha256, id) => {
+                const promptText = `I want to install the '${skillName}' skill pack.
+Primary source: ${fullUrl}
+
+TROUBLESHOOTING (EGRESS/403):
+If you get an EGRESS_BLOCKED or 403 error from raw.githubusercontent.com, follow these steps:
+1. git clone ${registryData.repo_url} temp_skill_repo
+2. skill-forge install ./temp_skill_repo/${path} --sha256 ${sha256}
+3. rm -rf temp_skill_repo
+
+Note: If 'skills-forge' is not installed, run 'pip install skills-forge' first.`;
+
                 navigator.clipboard.writeText(promptText).then(() => {
                     const el = document.getElementById(`copy-msg-${id}`);
                     if (el) {
@@ -387,52 +296,30 @@
                         setTimeout(() => { el.style.display = 'none'; }, 2000);
                     }
 
-                    const encodedPrompt = encodeURIComponent(promptText);
                     const desktopUrl = `claude://`;
-                    const webUrl = `https://claude.ai/new?q=${encodedPrompt}`;
+                    const webUrl = `https://claude.ai/new?q=${encodeURIComponent("I have copied an installation command to my clipboard. Please read it.")}`;
 
                     let blurred = false;
                     const onBlur = () => { blurred = true; };
                     window.addEventListener('blur', onBlur);
-
                     window.location.href = desktopUrl;
 
                     setTimeout(() => {
                         window.removeEventListener('blur', onBlur);
-                        if (!blurred) {
-                            window.open(webUrl, '_blank');
-                        }
+                        if (!blurred) window.open(webUrl, '_blank');
                     }, 1500);
                 });
             };
 
-            const skillPrompts = {};
-
+            let cardsHtml = "";
             registryData.skills.forEach((skill, idx) => {
                 const latest = skill.versions.find(v => v.version === skill.latest);
                 const fullUrl = `${registryData.base_url}/${latest.path}`;
                 const installCmd = `skill-forge install ${fullUrl} --sha256 ${latest.sha256}`;
+                const tagsHtml = skill.tags.map(tag => `<span class="tag-pill text-[9px] px-2 py-0.5 rounded-md uppercase font-bold tracking-tighter">#${tag}</span>`).join(' ');
 
-                skillPrompts[idx] = [
-                    `I want you to install a new skill called "${skill.name}" so you can help me better with tasks like: ${skill.description}`,
-                    ``,
-                    `Please install it by running this command:`,
-                    `skill-forge install ${fullUrl} --sha256 ${latest.sha256}`,
-                    ``,
-                    `If that URL is blocked, clone the registry first and install locally:`,
-                    `git clone https://github.com/ficiverson/skill-registry.git`,
-                    `skill-forge install skill-registry/${latest.path} --sha256 ${latest.sha256}`,
-                    ``,
-                    `Once done, confirm the skill is installed and ready.`
-                ].join('\n');
-
-
-                const tagsHtml = skill.tags.map(tag =>
-                    `<span class="tag-pill text-[9px] px-2 py-0.5 rounded-md uppercase font-bold tracking-tighter">#${tag}</span>`
-                ).join(' ');
-
-                const card = `
-                    <div class="skill-card bg-slate-800/30 border border-slate-700/50 rounded-[2.5rem] p-10 hover:border-indigo-500/40 transition-all flex flex-col h-full relative group shadow-2xl" 
+                cardsHtml += `
+                    <div class="skill-card bg-slate-800/30 border border-slate-700/50 rounded-[2.5rem] p-10 flex flex-col h-full relative group shadow-2xl" 
                          data-title="${skill.name.toLowerCase()}" 
                          data-tags="${skill.tags.join(' ').toLowerCase()}">
                         <div class="flex justify-between items-center mb-8">
@@ -445,17 +332,14 @@
                         <p class="text-slate-400 mb-6 leading-relaxed text-sm italic">"${skill.description}"</p>
                         <div class="flex flex-wrap gap-2 mb-10">${tagsHtml}</div>
                         <div class="space-y-6 mt-auto">
-                            <!-- Non-dev option -->
                             <div class="relative">
-                                <p class="text-[10px] font-bold text-emerald-400 uppercase tracking-widest mb-3 ml-1"><i class="fas fa-magic mr-1"></i> Claude / Cowork (Non-Dev)</p>
-                                <button onclick="launchClaude(skillPrompts[${idx}], 'cowork-${idx}')" class="w-full relative overflow-hidden bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/30 text-emerald-400 font-black py-4 rounded-2xl transition-all flex flex-col items-center justify-center gap-1 text-[11px] uppercase tracking-widest text-center px-4">
-                                    <div class="flex items-center gap-3"><i class="fas fa-bolt"></i> One-click Install for Cowork</div>
+                                <p class="text-[10px] font-bold text-emerald-400 uppercase tracking-widest mb-3 ml-1"><i class="fas fa-magic mr-1"></i> Claude / Sandbox (Auto-Fix)</p>
+                                <button onclick="launchClaude('${skill.name}', '${fullUrl}', '${latest.path}', '${latest.sha256}', 'cowork-${idx}')" class="w-full relative overflow-hidden bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/30 text-emerald-400 font-black py-4 rounded-2xl transition-all flex flex-col items-center justify-center gap-1 text-[11px] uppercase tracking-widest text-center px-4">
+                                    <div class="flex items-center gap-3"><i class="fas fa-bolt"></i> One-click Install for Claude</div>
                                     <span class="text-[8px] text-emerald-500/70 normal-case tracking-normal font-normal">Copies prompt and opens Claude. Just Paste!</span>
-                                    <div id="copy-msg-cowork-${idx}" class="copy-success italic bg-emerald-500 text-white">COPIED!</div>
+                                    <div id="copy-msg-cowork-${idx}" class="copy-success italic bg-emerald-500 text-white">PROMPT COPIED!</div>
                                 </button>
                             </div>
-
-                            <!-- Terminal Option -->
                             <div class="relative group/cmd pt-6 border-t border-slate-800/50">
                                 <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 ml-1">CLI / Developer</p>
                                 <div onclick="copyCmd('${installCmd}', ${idx})" class="cursor-pointer bg-black/60 p-6 rounded-2xl border border-slate-800 hover:border-indigo-500/30 transition-all relative">
@@ -475,23 +359,17 @@
                             </div>
                         </div>
                     </div>`;
-                container.innerHTML += card;
             });
+            container.innerHTML = cardsHtml;
 
             searchInput.addEventListener('input', (e) => {
                 const term = e.target.value.toLowerCase();
                 const cards = document.querySelectorAll('.skill-card');
                 let found = 0;
-
                 cards.forEach(card => {
-                    const title = card.getAttribute('data-title');
-                    const tags = card.getAttribute('data-tags');
-                    if (title.includes(term) || tags.includes(term)) {
-                        card.classList.remove('hidden-skill');
-                        found++;
-                    } else {
-                        card.classList.add('hidden-skill');
-                    }
+                    const matches = card.getAttribute('data-title').includes(term) || card.getAttribute('data-tags').includes(term);
+                    card.classList.toggle('hidden-skill', !matches);
+                    if (matches) found++;
                 });
                 noResults.style.display = found === 0 ? 'block' : 'none';
             });
