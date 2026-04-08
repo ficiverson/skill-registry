@@ -127,7 +127,7 @@ def main() -> int:
             "",
             "This registry index is generated and maintained automatically using the [**Skills Forge**](https://pypi.org/project/skills-forge/) library, crafted by [Fernando Souto](https://github.com/ficiverson/skills-forge).",
             "",
-            "Skills Forge is a powerful distribution ecosystem that allows AI engineers to package specialized knowledge, stylistic guidelines, and technical workflows into versioned, shareable `.skillpack` artifacts. By acting as a decentralized registry, this repository provides secure, SHA256-verified access to context-aware expertise, empowering agents like **Claude Code** to directly integrate with your preferred stack.",
+            "Skills Forge is a **universal bridge** for AI capabilities. It allows engineers to package specialized knowledge, technical workflows, and stylistic guidelines into deterministic, versioned `.skillpack` artifacts. Built on the [**agentskills.io**](https://agentskills.io) open standard adopted by Anthropic, Google, and OpenAI, these skills are portable across every major agent-CLI and chatbot platform via native installation or universal exports (System Prompts, GPT JSON, MCP).",
             "",
             "## Registry index",
             "",
@@ -141,6 +141,13 @@ def main() -> int:
             "## Skills",
             "",
             _render_skill_table(skills, base_url),
+            "",
+            "## Multi-Platform Support",
+            "",
+            "Every skill in this registry can be delivered via:",
+            "1. **Native CLI Install**: `skills-forge install <URL> --target [claude|gemini|codex|vscode|agents]`",
+            "2. **Universal Export**: Render any skill as a System Prompt, GPT JSON, or Gemini Gem using `skills-forge export`.",
+            "3. **MCP (Model Context Protocol)**: Any skill can be served as an MCP Prompt primitive for live injection into Claude Desktop or Cursor.",
             "",
         ]
     )

@@ -95,6 +95,33 @@
         #scroll-sentinel {
             height: 1px;
         }
+
+        /* Simplified Modal */
+        .modal-backdrop {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(2, 6, 23, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .modal-content {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 2rem;
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-open {
+            overflow: hidden;
+        }
     </style>
 </head>
 
@@ -121,7 +148,7 @@
                 </div>
 
                 <a href="https://pypi.org/project/skills-forge/" target="_blank"
-                    class="text-[10px] font-black bg-slate-800 hover:bg-slate-700 px-4 py-2.5 rounded-xl transition-all border border-slate-700 whitespace-nowrap tracking-widest uppercase">
+                    class="text-[10px] font-black bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2.5 rounded-xl transition-all shadow-lg whitespace-nowrap tracking-widest uppercase">
                     <i class="fab fa-python mr-2"></i> PyPI package
                 </a>
                 <a href="https://github.com/ficiverson/skills-forge" target="_blank"
@@ -169,6 +196,50 @@
         </div>
     </main>
 
+    <!-- Simplified Export Modal -->
+    <div id="export-modal" class="modal-backdrop" onclick="closeModal(event)">
+        <div class="modal-content p-8 md:p-10" onclick="event.stopPropagation()">
+            <button onclick="closeModal()"
+                class="absolute top-6 right-6 text-slate-400 hover:text-white transition-colors">
+                <i class="fas fa-times"></i>
+            </button>
+            <div id="modal-platform-badge"
+                class="inline-block px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest mb-4"></div>
+            <h3 id="modal-title" class="text-2xl font-bold text-white mb-6"></h3>
+
+            <p id="modal-label-primary" class="text-slate-400 text-xs mb-4 uppercase tracking-widest font-bold">Copy
+                Command to Export:</p>
+            <div class="relative group mb-6">
+                <pre id="modal-code"
+                    class="bg-black/40 p-5 rounded-xl border border-slate-700 text-sm text-indigo-300 font-mono break-all whitespace-pre-wrap leading-relaxed"></pre>
+                <button id="modal-copy-btn"
+                    class="absolute top-3 right-3 bg-indigo-600 hover:bg-indigo-500 text-white p-2 rounded-lg transition-all shadow-lg">
+                    <i class="fas fa-copy"></i>
+                </button>
+            </div>
+
+            <div id="modal-run-section" class="hidden mb-6">
+                <p id="modal-label-run" class="text-slate-400 text-xs mb-4 uppercase tracking-widest font-bold">Run Server:</p>
+                <div class="relative group">
+                    <pre id="modal-code-run" class="bg-black/40 p-5 rounded-xl border border-slate-700 text-sm text-indigo-300 font-mono break-all whitespace-pre-wrap leading-relaxed"></pre>
+                    <button id="modal-copy-btn-run" class="absolute top-3 right-3 bg-indigo-600 hover:bg-indigo-500 text-white p-2 rounded-lg transition-all shadow-lg">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div id="modal-secondary-section" class="hidden">
+                <p id="modal-label-secondary" class="text-slate-400 text-xs mb-4 uppercase tracking-widest font-bold">Client Configuration JSON:</p>
+                <div class="relative group">
+                    <pre id="modal-code-secondary" class="bg-black/40 p-5 rounded-xl border border-slate-700 text-[11px] text-emerald-300 font-mono break-all whitespace-pre-wrap leading-relaxed"></pre>
+                    <button id="modal-copy-btn-secondary" class="absolute top-3 right-3 bg-emerald-600 hover:bg-emerald-500 text-white p-2 rounded-lg transition-all shadow-lg">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const registryData = {
@@ -190,9 +261,6 @@
                         ],
                         "platforms": [
                             "claude",
-                            "gemini",
-                            "codex",
-                            "agents",
                             "mcp"
                         ],
                         "owner": {
@@ -230,9 +298,6 @@
                         ],
                         "platforms": [
                             "claude",
-                            "gemini",
-                            "codex",
-                            "agents",
                             "mcp"
                         ],
                         "owner": {
@@ -275,9 +340,9 @@
                         ],
                         "platforms": [
                             "claude",
-                            "gemini",
-                            "codex",
-                            "agents",
+                            "gpt",
+                            "gem",
+                            "bedrock",
                             "mcp"
                         ],
                         "owner": {
@@ -309,10 +374,9 @@
                         ],
                         "platforms": [
                             "claude",
-                            "gemini",
-                            "codex",
-                            "agents",
-                            "gpt-json",
+                            "gpt",
+                            "gem",
+                            "bedrock",
                             "mcp"
                         ],
                         "owner": {
@@ -344,10 +408,9 @@
                         ],
                         "platforms": [
                             "claude",
-                            "gemini",
-                            "codex",
-                            "agents",
-                            "gpt-json",
+                            "gpt",
+                            "gem",
+                            "bedrock",
                             "mcp"
                         ],
                         "owner": {
@@ -379,10 +442,9 @@
                         ],
                         "platforms": [
                             "claude",
-                            "gemini",
-                            "codex",
-                            "agents",
-                            "gpt-json",
+                            "gpt",
+                            "gem",
+                            "bedrock",
                             "mcp"
                         ],
                         "owner": {
@@ -415,10 +477,9 @@
                         ],
                         "platforms": [
                             "claude",
-                            "gemini",
-                            "codex",
-                            "agents",
-                            "gpt-json",
+                            "gpt",
+                            "gem",
+                            "bedrock",
                             "mcp"
                         ],
                         "owner": {
@@ -448,9 +509,9 @@
                         ],
                         "platforms": [
                             "claude",
-                            "gemini",
-                            "codex",
-                            "agents",
+                            "gpt",
+                            "gem",
+                            "bedrock",
                             "mcp"
                         ],
                         "owner": {
@@ -526,13 +587,12 @@ Note: If 'skills-forge' is not installed, run 'pip install skills-forge' first.`
             let renderedCount = 0;
 
             const PLATFORM_META = {
-                'claude':  { label: 'Claude',   cls: 'bg-indigo-500/15 text-indigo-300 border-indigo-500/30',  icon: '✦' },
-                'gemini':  { label: 'Gemini',   cls: 'bg-blue-500/15 text-blue-300 border-blue-500/30',        icon: '✦' },
-                'codex':   { label: 'Codex',    cls: 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30', icon: '✦' },
-                'agents':  { label: 'Agents',   cls: 'bg-orange-500/15 text-orange-300 border-orange-500/30',  icon: '✦' },
-                'gpt-json':{ label: 'GPT',      cls: 'bg-teal-500/15 text-teal-300 border-teal-500/30',        icon: '✦' },
-                'mcp':     { label: 'MCP',      cls: 'bg-rose-500/15 text-rose-300 border-rose-500/30',        icon: '✦' },
-                'vscode':  { label: 'VS Code',  cls: 'bg-cyan-500/15 text-cyan-300 border-cyan-500/30',        icon: '✦' },
+                'claude': { label: 'Claude', cls: 'bg-indigo-500/15 text-indigo-300 border-indigo-500/30', icon: '✦', type: 'export', format: 'system-prompt' },
+                'gpt': { label: 'GPT', cls: 'bg-teal-500/15 text-teal-300 border-teal-500/30', icon: '✦', type: 'export', format: 'gpt-json' },
+                'gem': { label: 'Gemini', cls: 'bg-amber-500/15 text-amber-300 border-amber-500/30', icon: '✦', type: 'export', format: 'gem-txt' },
+                'bedrock': { label: 'Bedrock', cls: 'bg-rose-500/15 text-rose-300 border-rose-500/30', icon: '✦', type: 'export', format: 'bedrock-xml' },
+                'mcp': { label: 'MCP', cls: 'bg-indigo-500/15 text-indigo-300 border-indigo-500/30', icon: '✦', type: 'export', format: 'mcp-server' },
+                'vscode': { label: 'VS Code', cls: 'bg-cyan-500/15 text-cyan-300 border-cyan-500/30', icon: '✦', type: 'install' },
             };
 
             function buildCard(skill) {
@@ -545,7 +605,7 @@ Note: If 'skills-forge' is not installed, run 'pip install skills-forge' first.`
                 const platforms = Array.isArray(skill.platforms) ? skill.platforms : [];
                 const platformsHtml = platforms.map(p => {
                     const m = PLATFORM_META[p] || { label: p, cls: 'bg-slate-600/30 text-slate-400 border-slate-600/30', icon: '·' };
-                    return `<span class="inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full border ${m.cls}">${m.icon} ${m.label}</span>`;
+                    return `<span data-action="open-modal" data-platform="${p}" data-skill-idx="${registryData.skills.indexOf(skill)}" class="cursor-pointer hover:scale-105 active:scale-95 transition-transform inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full border ${m.cls}">${m.icon} ${m.label}</span>`;
                 }).join('');
                 return `
                     <div class="skill-card bg-slate-800/30 border border-slate-700/50 rounded-[2.5rem] p-10 flex flex-col h-full relative group shadow-2xl"
@@ -620,13 +680,109 @@ Note: If 'skills-forge' is not installed, run 'pip install skills-forge' first.`
                 renderedCount += batch.length;
             }
 
+            // ── Modal Logic ───────────────────────────────────────────────
+            const modal = document.getElementById('export-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalPlatformBadge = document.getElementById('modal-platform-badge');
+            const modalCode = document.getElementById('modal-code');
+            const modalCopyBtn = document.getElementById('modal-copy-btn');
+            const modalLabelPrimary = document.getElementById('modal-label-primary');
+            const modalRunSection = document.getElementById('modal-run-section');
+            const modalCodeRun = document.getElementById('modal-code-run');
+            const modalCopyBtnRun = document.getElementById('modal-copy-btn-run');
+            const modalSecondarySection = document.getElementById('modal-secondary-section');
+            const modalCodeSecondary = document.getElementById('modal-code-secondary');
+            const modalCopyBtnSecondary = document.getElementById('modal-copy-btn-secondary');
+
+            window.closeModal = (e) => {
+                modal.style.display = 'none';
+                document.body.classList.remove('modal-open');
+            };
+
+            function openExportModal(platformKey, skillIdx) {
+                const skill = registryData.skills[skillIdx];
+                const meta = PLATFORM_META[platformKey];
+                const latest = skill.versions.find(v => v.version === skill.latest);
+                const fullUrl = `${registryData.base_url}/${latest.path}`;
+
+                modalTitle.textContent = skill.name;
+                modalPlatformBadge.textContent = `${meta.icon} ${meta.label}`;
+                modalPlatformBadge.className = `inline-block px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest mb-4 ${meta.cls}`;
+
+                modalRunSection.classList.add('hidden');
+                modalSecondarySection.classList.add('hidden');
+                modalLabelPrimary.textContent = 'Copy Command to Export:';
+
+                let command = '';
+                if (meta.type === 'install') {
+                    command = `skills-forge install ./${latest.path}`;
+                } else if (meta.type === 'export') {
+                    const formatFlag = (meta.format && meta.format !== 'system-prompt') ? ` --format ${meta.format}` : '';
+                    const outputFlag = meta.format === 'mcp-server' ? ` -o ./exports/` : '';
+                    command = `skills-forge export ./${latest.path}${formatFlag}${outputFlag}`;
+
+                    if (meta.format === 'mcp-server') {
+                        modalLabelPrimary.textContent = 'Server Implementation:';
+                        modalRunSection.classList.remove('hidden');
+                        modalSecondarySection.classList.remove('hidden');
+                        
+                        const runCmd = `uvx --from "mcp[cli]" mcp run ./${skill.name}-mcp-server.py`;
+                        modalCodeRun.textContent = runCmd;
+                        modalCopyBtnRun.onclick = () => {
+                            navigator.clipboard.writeText(runCmd).then(() => {
+                                const icon = modalCopyBtnRun.querySelector('i');
+                                icon.className = 'fas fa-check';
+                                setTimeout(() => icon.className = 'fas fa-copy', 2000);
+                            });
+                        };
+                        
+                        const snippet = {
+                            [skill.name]: {
+                                "command": "uvx",
+                                "args": [
+                                    "--from", "mcp[cli]",
+                                    "mcp", "run",
+                                    `./exports/${skill.name}-mcp-server.py`
+                                ]
+                            }
+                        };
+                        const snippetStr = JSON.stringify(snippet, null, 2);
+                        modalCodeSecondary.textContent = snippetStr;
+                        modalCopyBtnSecondary.onclick = () => {
+                            navigator.clipboard.writeText(snippetStr).then(() => {
+                                const icon = modalCopyBtnSecondary.querySelector('i');
+                                icon.className = 'fas fa-check';
+                                setTimeout(() => icon.className = 'fas fa-copy', 2000);
+                            });
+                        }
+                    }
+                } else {
+                    command = `skills-forge export ./${latest.path}`;
+                }
+
+                modalCode.textContent = command;
+
+                modalCopyBtn.onclick = () => {
+                    navigator.clipboard.writeText(command).then(() => {
+                        const icon = modalCopyBtn.querySelector('i');
+                        icon.className = 'fas fa-check';
+                        setTimeout(() => icon.className = 'fas fa-copy', 2000);
+                    });
+                };
+
+                modal.style.display = 'flex';
+                document.body.classList.add('modal-open');
+            }
+
             // ── event delegation — one listener handles every card action ─────
             container.addEventListener('click', e => {
                 const target = e.target.closest('[data-action]');
                 if (!target) return;
                 const action = target.dataset.action;
 
-                if (action === 'copy') {
+                if (action === 'open-modal') {
+                    openExportModal(target.dataset.platform, parseInt(target.dataset.skillIdx));
+                } else if (action === 'copy') {
                     navigator.clipboard.writeText(target.dataset.cmd).then(() => {
                         showSuccess(target, 'COPIED!');
                     });
