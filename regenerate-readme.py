@@ -45,8 +45,8 @@ def _pick_latest_version(skill: dict) -> dict:
 def _render_skill_table(skills: list[dict], base_url: str) -> str:
     header = "\n".join(
         [
-            "| Category | Skill | Latest | Platforms | Owner | Published At | Size | SHA256 | Tags | Description | Download |",
-            "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+            "| Category | Skill | Latest | Install Targets | Export Formats | Owner | Published At | Size | SHA256 | Tags | Description | Download |",
+            "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |",
         ]
     )
     rows: list[str] = []
@@ -73,9 +73,11 @@ def _render_skill_table(skills: list[dict], base_url: str) -> str:
         pack_path = latest_version.get("path", "")
         download_url = f"{base_url.rstrip('/')}/{pack_path}" if pack_path else ""
         download = f"[download]({download_url})" if download_url else ""
+        export_formats = latest_version.get("export_formats", [])
+        export_formats_text = " ".join(f"`{f}`" for f in export_formats) if isinstance(export_formats, list) else ""
 
         rows.append(
-            f"| `{category}` | `{name}` | `{version or latest}` | {platforms_text} | `{owner_text}` | `{published_at}` | `{size}` | `{sha256}` | {tags_text} | {description} | {download} |"
+            f"| `{category}` | `{name}` | `{version or latest}` | {platforms_text} | {export_formats_text} | `{owner_text}` | `{published_at}` | `{size}` | `{sha256}` | {tags_text} | {description} | {download} |"
         )
 
     if not rows:
