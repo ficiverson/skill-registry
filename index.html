@@ -261,7 +261,10 @@
                         ],
                         "platforms": [
                             "claude",
-                            "mcp"
+                            "gemini",
+                            "codex",
+                            "agents",
+                            "mcp-server"
                         ],
                         "owner": {
                             "name": "Fernando Souto",
@@ -298,7 +301,10 @@
                         ],
                         "platforms": [
                             "claude",
-                            "mcp"
+                            "gemini",
+                            "codex",
+                            "agents",
+                            "mcp-server"
                         ],
                         "owner": {
                             "name": "Fernando Souto",
@@ -340,10 +346,14 @@
                         ],
                         "platforms": [
                             "claude",
-                            "gpt",
-                            "gem",
-                            "bedrock",
-                            "mcp"
+                            "gemini",
+                            "codex",
+                            "agents",
+                            "vscode",
+                            "gpt-json",
+                            "gem-txt",
+                            "bedrock-xml",
+                            "mcp-server"
                         ],
                         "owner": {
                             "name": "Fernando Souto",
@@ -374,10 +384,14 @@
                         ],
                         "platforms": [
                             "claude",
-                            "gpt",
-                            "gem",
-                            "bedrock",
-                            "mcp"
+                            "gemini",
+                            "codex",
+                            "agents",
+                            "vscode",
+                            "gpt-json",
+                            "gem-txt",
+                            "bedrock-xml",
+                            "mcp-server"
                         ],
                         "owner": {
                             "name": "Fernando Souto",
@@ -408,10 +422,14 @@
                         ],
                         "platforms": [
                             "claude",
-                            "gpt",
-                            "gem",
-                            "bedrock",
-                            "mcp"
+                            "gemini",
+                            "codex",
+                            "agents",
+                            "vscode",
+                            "gpt-json",
+                            "gem-txt",
+                            "bedrock-xml",
+                            "mcp-server"
                         ],
                         "owner": {
                             "name": "Fernando Souto",
@@ -442,10 +460,14 @@
                         ],
                         "platforms": [
                             "claude",
-                            "gpt",
-                            "gem",
-                            "bedrock",
-                            "mcp"
+                            "gemini",
+                            "codex",
+                            "agents",
+                            "vscode",
+                            "gpt-json",
+                            "gem-txt",
+                            "bedrock-xml",
+                            "mcp-server"
                         ],
                         "owner": {
                             "name": "Fernando Souto",
@@ -477,10 +499,14 @@
                         ],
                         "platforms": [
                             "claude",
-                            "gpt",
-                            "gem",
-                            "bedrock",
-                            "mcp"
+                            "gemini",
+                            "codex",
+                            "agents",
+                            "vscode",
+                            "gpt-json",
+                            "gem-txt",
+                            "bedrock-xml",
+                            "mcp-server"
                         ],
                         "owner": {
                             "name": "Fernando Souto",
@@ -509,10 +535,13 @@
                         ],
                         "platforms": [
                             "claude",
-                            "gpt",
-                            "gem",
-                            "bedrock",
-                            "mcp"
+                            "gemini",
+                            "codex",
+                            "agents",
+                            "gpt-json",
+                            "gem-txt",
+                            "bedrock-xml",
+                            "mcp-server"
                         ],
                         "owner": {
                             "name": "Fernando Souto",
@@ -586,13 +615,21 @@ Note: If 'skills-forge' is not installed, run 'pip install skills-forge' first.`
             let filteredSkills = registryData.skills.slice();
             let renderedCount = 0;
 
+            // Keys are exact CLI flag values:
+            //   install targets  → `skills-forge install <url> --target <key>`
+            //   export formats   → `skills-forge export <pack> --format <key>`
             const PLATFORM_META = {
-                'claude': { label: 'Claude', cls: 'bg-indigo-500/15 text-indigo-300 border-indigo-500/30', icon: '✦', type: 'export', format: 'system-prompt' },
-                'gpt': { label: 'GPT', cls: 'bg-teal-500/15 text-teal-300 border-teal-500/30', icon: '✦', type: 'export', format: 'gpt-json' },
-                'gem': { label: 'Gemini', cls: 'bg-amber-500/15 text-amber-300 border-amber-500/30', icon: '✦', type: 'export', format: 'gem-txt' },
-                'bedrock': { label: 'Bedrock', cls: 'bg-rose-500/15 text-rose-300 border-rose-500/30', icon: '✦', type: 'export', format: 'bedrock-xml' },
-                'mcp': { label: 'MCP', cls: 'bg-indigo-500/15 text-indigo-300 border-indigo-500/30', icon: '✦', type: 'export', format: 'mcp-server' },
-                'vscode': { label: 'VS Code', cls: 'bg-cyan-500/15 text-cyan-300 border-cyan-500/30', icon: '✦', type: 'install' },
+                // ── install targets (skills-forge install --target <key>) ──────
+                'claude':  { label: 'Claude',  cls: 'bg-indigo-500/15 text-indigo-300 border-indigo-500/30',  icon: '✦', type: 'install' },
+                'gemini':  { label: 'Gemini',  cls: 'bg-blue-500/15 text-blue-300 border-blue-500/30',        icon: '✦', type: 'install' },
+                'codex':   { label: 'Codex',   cls: 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30', icon: '✦', type: 'install' },
+                'agents':  { label: 'Agents',  cls: 'bg-orange-500/15 text-orange-300 border-orange-500/30',  icon: '✦', type: 'install' },
+                'vscode':  { label: 'VS Code', cls: 'bg-cyan-500/15 text-cyan-300 border-cyan-500/30',        icon: '✦', type: 'install', scope: 'project' },
+                // ── export formats (skills-forge export <pack> --format <key>) ─
+                'gpt-json':    { label: 'GPT',     cls: 'bg-teal-500/15 text-teal-300 border-teal-500/30',      icon: '✦', type: 'export' },
+                'gem-txt':     { label: 'Gem',     cls: 'bg-amber-500/15 text-amber-300 border-amber-500/30',   icon: '✦', type: 'export' },
+                'bedrock-xml': { label: 'Bedrock', cls: 'bg-rose-500/15 text-rose-300 border-rose-500/30',      icon: '✦', type: 'export' },
+                'mcp-server':  { label: 'MCP',     cls: 'bg-purple-500/15 text-purple-300 border-purple-500/30', icon: '✦', type: 'export' },
             };
 
             function buildCard(skill) {
@@ -711,22 +748,28 @@ Note: If 'skills-forge' is not installed, run 'pip install skills-forge' first.`
 
                 modalRunSection.classList.add('hidden');
                 modalSecondarySection.classList.add('hidden');
-                modalLabelPrimary.textContent = 'Copy Command to Export:';
+                modalLabelPrimary.textContent = 'Command:';
 
                 let command = '';
                 if (meta.type === 'install') {
-                    command = `skills-forge install ./${latest.path}`;
+                    // Install targets: use full CDN URL + --target <platformKey>
+                    // vscode requires --scope project (no global skills dir)
+                    const scopeFlag = meta.scope === 'project' ? ' --scope project' : '';
+                    command = `skills-forge install ${fullUrl} --sha256 ${latest.sha256} --target ${platformKey}${scopeFlag}`;
+                    modalLabelPrimary.textContent = 'Install Command:';
                 } else if (meta.type === 'export') {
-                    const formatFlag = (meta.format && meta.format !== 'system-prompt') ? ` --format ${meta.format}` : '';
-                    const outputFlag = meta.format === 'mcp-server' ? ` -o ./exports/` : '';
+                    // Export formats: use --format <platformKey> (exact CLI value)
+                    const formatFlag = platformKey !== 'system-prompt' ? ` --format ${platformKey}` : '';
+                    const outputFlag = platformKey === 'mcp-server' ? ` -o ./exports/` : '';
                     command = `skills-forge export ./${latest.path}${formatFlag}${outputFlag}`;
+                    modalLabelPrimary.textContent = 'Export Command:';
 
-                    if (meta.format === 'mcp-server') {
-                        modalLabelPrimary.textContent = 'Server Implementation:';
+                    if (platformKey === 'mcp-server') {
+                        modalLabelPrimary.textContent = 'Export + Run:';
                         modalRunSection.classList.remove('hidden');
                         modalSecondarySection.classList.remove('hidden');
-                        
-                        const runCmd = `uvx --from "mcp[cli]" mcp run ./${skill.name}-mcp-server.py`;
+
+                        const runCmd = `uvx --from "mcp[cli]" mcp run ./exports/${skill.name}-mcp-server.py`;
                         modalCodeRun.textContent = runCmd;
                         modalCopyBtnRun.onclick = () => {
                             navigator.clipboard.writeText(runCmd).then(() => {
@@ -735,7 +778,7 @@ Note: If 'skills-forge' is not installed, run 'pip install skills-forge' first.`
                                 setTimeout(() => icon.className = 'fas fa-copy', 2000);
                             });
                         };
-                        
+
                         const snippet = {
                             [skill.name]: {
                                 "command": "uvx",
@@ -754,10 +797,8 @@ Note: If 'skills-forge' is not installed, run 'pip install skills-forge' first.`
                                 icon.className = 'fas fa-check';
                                 setTimeout(() => icon.className = 'fas fa-copy', 2000);
                             });
-                        }
+                        };
                     }
-                } else {
-                    command = `skills-forge export ./${latest.path}`;
                 }
 
                 modalCode.textContent = command;

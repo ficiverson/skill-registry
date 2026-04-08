@@ -15,10 +15,7 @@
         "release",
         "publish"
       ],
-      "platforms": [
-        "claude",
-        "mcp"
-      ],
+      "platforms": ["claude", "gemini", "codex", "agents", "mcp-server"],
       "owner": {
         "name": "Fernando Souto",
         "email": "me@fernandosouto.dev"
@@ -52,10 +49,7 @@
         "engineering-rubric-works-for-any-language-or-stack",
         "not-just-python/langchain"
       ],
-      "platforms": [
-        "claude",
-        "mcp"
-      ],
+      "platforms": ["claude", "gemini", "codex", "agents", "mcp-server"],
       "owner": {
         "name": "Fernando Souto",
         "email": "me@fernandosouto.dev"
@@ -94,13 +88,7 @@
         "negative-tests",
         "bdd"
       ],
-      "platforms": [
-        "claude",
-        "gpt",
-        "gem",
-        "bedrock",
-        "mcp"
-      ],
+      "platforms": ["claude", "gemini", "codex", "agents", "vscode", "gpt-json", "gem-txt", "bedrock-xml", "mcp-server"],
       "owner": {
         "name": "Fernando Souto",
         "email": "me@fernandosouto.dev"
@@ -128,13 +116,7 @@
         "professionalism",
         "productivity"
       ],
-      "platforms": [
-        "claude",
-        "gpt",
-        "gem",
-        "bedrock",
-        "mcp"
-      ],
+      "platforms": ["claude", "gemini", "codex", "agents", "vscode", "gpt-json", "gem-txt", "bedrock-xml", "mcp-server"],
       "owner": {
         "name": "Fernando Souto",
         "email": "me@fernandosouto.dev"
@@ -162,13 +144,7 @@
         "transcript",
         "notes"
       ],
-      "platforms": [
-        "claude",
-        "gpt",
-        "gem",
-        "bedrock",
-        "mcp"
-      ],
+      "platforms": ["claude", "gemini", "codex", "agents", "vscode", "gpt-json", "gem-txt", "bedrock-xml", "mcp-server"],
       "owner": {
         "name": "Fernando Souto",
         "email": "me@fernandosouto.dev"
@@ -196,13 +172,7 @@
         "personal-brand",
         "productivity"
       ],
-      "platforms": [
-        "claude",
-        "gpt",
-        "gem",
-        "bedrock",
-        "mcp"
-      ],
+      "platforms": ["claude", "gemini", "codex", "agents", "vscode", "gpt-json", "gem-txt", "bedrock-xml", "mcp-server"],
       "owner": {
         "name": "Fernando Souto",
         "email": "me@fernandosouto.dev"
@@ -231,13 +201,7 @@
         "acceptance-criteria",
         "backlog"
       ],
-      "platforms": [
-        "claude",
-        "gpt",
-        "gem",
-        "bedrock",
-        "mcp"
-      ],
+      "platforms": ["claude", "gemini", "codex", "agents", "vscode", "gpt-json", "gem-txt", "bedrock-xml", "mcp-server"],
       "owner": {
         "name": "Fernando Souto",
         "email": "me@fernandosouto.dev"
@@ -263,13 +227,7 @@
         "openapi",
         "backend-tests"
       ],
-      "platforms": [
-        "claude",
-        "gpt",
-        "gem",
-        "bedrock",
-        "mcp"
-      ],
+      "platforms": ["claude", "gemini", "codex", "agents", "gpt-json", "gem-txt", "bedrock-xml", "mcp-server"],
       "owner": {
         "name": "Fernando Souto",
         "email": "me@fernandosouto.dev"
