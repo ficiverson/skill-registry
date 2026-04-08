@@ -45,8 +45,8 @@ def _pick_latest_version(skill: dict) -> dict:
 def _render_skill_table(skills: list[dict], base_url: str) -> str:
     header = "\n".join(
         [
-            "| Category | Skill | Latest | Owner | Published At | Size | SHA256 | Tags | Description | Download |",
-            "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+            "| Category | Skill | Latest | Platforms | Owner | Published At | Size | SHA256 | Tags | Description | Download |",
+            "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |",
         ]
     )
     rows: list[str] = []
@@ -58,6 +58,8 @@ def _render_skill_table(skills: list[dict], base_url: str) -> str:
         description = str(skill.get("description", "")).replace("\n", " ").replace("|", "\\|")
         tags = skill.get("tags", [])
         tags_text = ", ".join(f"`{tag}`" for tag in tags) if isinstance(tags, list) else ""
+        platforms = skill.get("platforms", [])
+        platforms_text = " ".join(f"`{p}`" for p in platforms) if isinstance(platforms, list) else ""
         owner = skill.get("owner", {})
         owner_name = owner.get("name", "") if isinstance(owner, dict) else ""
         owner_email = owner.get("email", "") if isinstance(owner, dict) else ""
@@ -73,11 +75,11 @@ def _render_skill_table(skills: list[dict], base_url: str) -> str:
         download = f"[download]({download_url})" if download_url else ""
 
         rows.append(
-            f"| `{category}` | `{name}` | `{version or latest}` | `{owner_text}` | `{published_at}` | `{size}` | `{sha256}` | {tags_text} | {description} | {download} |"
+            f"| `{category}` | `{name}` | `{version or latest}` | {platforms_text} | `{owner_text}` | `{published_at}` | `{size}` | `{sha256}` | {tags_text} | {description} | {download} |"
         )
 
     if not rows:
-        rows.append("| - | - | - | - | - | - | - | - | - | - |")
+        rows.append("| - | - | - | - | - | - | - | - | - | - | - |")
 
     return "\n".join([header, *rows])
 
