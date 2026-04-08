@@ -640,7 +640,7 @@ Note: If 'skills-forge' is not installed, run 'pip install skills-forge' first.`
                     `<span class="tag-pill text-[9px] px-2 py-0.5 rounded-md uppercase font-bold tracking-tighter">#${tag}</span>`
                 ).join(' ');
                 const platforms = Array.isArray(skill.platforms) ? skill.platforms : [];
-                const platformsHtml = platforms.map(p => {
+                const platformsHtml = platforms.filter(p => (PLATFORM_META[p] || {}).type === 'export').map(p => {
                     const m = PLATFORM_META[p] || { label: p, cls: 'bg-slate-600/30 text-slate-400 border-slate-600/30', icon: '·' };
                     return `<span data-action="open-modal" data-platform="${p}" data-skill-idx="${registryData.skills.indexOf(skill)}" class="cursor-pointer hover:scale-105 active:scale-95 transition-transform inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full border ${m.cls}">${m.icon} ${m.label}</span>`;
                 }).join('');
