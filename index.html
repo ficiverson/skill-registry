@@ -433,7 +433,7 @@ Primary source: ${fullUrl}
 
 Since you will receive a 403 error from raw.githubusercontent.com while in your sandbox, follow these steps:
 1. git clone https://github.com/ficiverson/skill-registry.git temp_skill_repo
-2. skill-forge install ./temp_skill_repo/${path} --sha256 ${sha256}
+2. skills-forge install ./temp_skill_repo/${path} --sha256 ${sha256}
 3. rm -rf temp_skill_repo
 
 Note: If 'skills-forge' is not installed, run 'pip install skills-forge' first.`;
@@ -468,7 +468,7 @@ Note: If 'skills-forge' is not installed, run 'pip install skills-forge' first.`
             function buildCard(skill) {
                 const latest = skill.versions.find(v => v.version === skill.latest);
                 const fullUrl = `${registryData.base_url}/${latest.path}`;
-                const installCmd = `skill-forge install ${fullUrl} --sha256 ${latest.sha256}`;
+                const installCmd = `skills-forge install ${fullUrl} --sha256 ${latest.sha256}`;
                 const tagsHtml = skill.tags.map(tag =>
                     `<span class="tag-pill text-[9px] px-2 py-0.5 rounded-md uppercase font-bold tracking-tighter">#${tag}</span>`
                 ).join(' ');
@@ -503,7 +503,7 @@ Note: If 'skills-forge' is not installed, run 'pip install skills-forge' first.`
                                 <div data-action="copy" data-cmd="${installCmd}"
                                      class="cursor-pointer bg-black/60 p-6 rounded-2xl border border-slate-800 hover:border-indigo-500/30 transition-all relative">
                                     <code class="text-sm text-indigo-400 font-mono block leading-relaxed break-all">
-                                        <span class="text-indigo-600">$</span> skill-forge install <span class="text-slate-300">...${latest.path.split('/').pop()}</span>
+                                        <span class="text-indigo-600">$</span> skills-forge install <span class="text-slate-300">...${latest.path.split('/').pop()}</span>
                                     </code>
                                 </div>
                             </div>
@@ -557,7 +557,7 @@ Note: If 'skills-forge' is not installed, run 'pip install skills-forge' first.`
 
                 } else if (action === 'launch') {
                     const { name, url, path, sha } = target.dataset;
-                    const promptText = `I want to install the '${name}' skill pack.\nPrimary source: ${url}\n\nSince you will receive a 403 error from raw.githubusercontent.com while in your sandbox, follow these steps:\n1. git clone https://github.com/ficiverson/skill-registry.git temp_skill_repo\n2. skill-forge install ./temp_skill_repo/${path} --sha256 ${sha}\n3. rm -rf temp_skill_repo\n\nNote: If 'skills-forge' is not installed, run 'pip install skills-forge' first.`;
+                    const promptText = `I want to install the '${name}' skill pack.\nPrimary source: ${url}\n\nSince you will receive a 403 error from raw.githubusercontent.com while in your sandbox, follow these steps:\n1. git clone https://github.com/ficiverson/skill-registry.git temp_skill_repo\n2. skills-forge install ./temp_skill_repo/${path} --sha256 ${sha}\n3. rm -rf temp_skill_repo\n\nNote: If 'skills-forge' is not installed, run 'pip install skills-forge' first.`;
 
                     navigator.clipboard.writeText(promptText).then(() => {
                         showSuccess(target, 'PROMPT COPIED!');
