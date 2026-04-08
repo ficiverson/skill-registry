@@ -2,7 +2,7 @@
   "format_version": "3",
   "registry_name": "skill-registry",
   "base_url": "https://raw.githubusercontent.com/ficiverson/skill-registry/main",
-  "updated_at": "2026-04-08T20:00:07+00:00",
+  "updated_at": "2026-04-08T20:07:38+00:00",
   "skills": [
     {
       "category": "development",
@@ -350,6 +350,13 @@
         "e2e-test",
         "lifecycle"
       ],
+      "platforms": [
+        "claude",
+        "gemini",
+        "codex",
+        "vscode",
+        "agents"
+      ],
       "owner": {
         "name": "Antigravity E2E",
         "email": "e2e@antigravity.ai"
@@ -358,9 +365,16 @@
         {
           "version": "1.0.0",
           "path": "packs/testing/full-featured-tester-1.0.0.skillpack",
-          "sha256": "263ab0557a82227009c7dafd292ab9db6e9dc3ecd38f47ef7f4cbe4111a48c2d",
-          "published_at": "2026-04-08T20:00:07+00:00",
-          "size_bytes": 3397
+          "sha256": "f842947a1fca4811d90d46853ef4e9b0c42c4bd891969c43a9baa229576bc4a7",
+          "published_at": "2026-04-08T20:07:38+00:00",
+          "size_bytes": 3484,
+          "export_formats": [
+            "system-prompt",
+            "gpt-json",
+            "gem-txt",
+            "bedrock-xml",
+            "mcp-server"
+          ]
         }
       ]
     }
