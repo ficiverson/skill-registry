@@ -95,6 +95,33 @@
         #scroll-sentinel {
             height: 1px;
         }
+
+        /* Simplified Modal */
+        .modal-backdrop {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(2, 6, 23, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .modal-content {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 2rem;
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-open {
+            overflow: hidden;
+        }
     </style>
 </head>
 
@@ -121,7 +148,7 @@
                 </div>
 
                 <a href="https://pypi.org/project/skills-forge/" target="_blank"
-                    class="text-[10px] font-black bg-slate-800 hover:bg-slate-700 px-4 py-2.5 rounded-xl transition-all border border-slate-700 whitespace-nowrap tracking-widest uppercase">
+                    class="text-[10px] font-black bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2.5 rounded-xl transition-all shadow-lg whitespace-nowrap tracking-widest uppercase">
                     <i class="fab fa-python mr-2"></i> PyPI package
                 </a>
                 <a href="https://github.com/ficiverson/skills-forge" target="_blank"
@@ -169,13 +196,57 @@
         </div>
     </main>
 
+    <!-- Simplified Export Modal -->
+    <div id="export-modal" class="modal-backdrop" onclick="closeModal(event)">
+        <div class="modal-content p-8 md:p-10" onclick="event.stopPropagation()">
+            <button onclick="closeModal()"
+                class="absolute top-6 right-6 text-slate-400 hover:text-white transition-colors">
+                <i class="fas fa-times"></i>
+            </button>
+            <div id="modal-platform-badge"
+                class="inline-block px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest mb-4"></div>
+            <h3 id="modal-title" class="text-2xl font-bold text-white mb-6"></h3>
+
+            <p id="modal-label-primary" class="text-slate-400 text-xs mb-4 uppercase tracking-widest font-bold">Copy
+                Command to Export:</p>
+            <div class="relative group mb-6">
+                <pre id="modal-code"
+                    class="bg-black/40 p-5 rounded-xl border border-slate-700 text-sm text-indigo-300 font-mono break-all whitespace-pre-wrap leading-relaxed"></pre>
+                <button id="modal-copy-btn"
+                    class="absolute top-3 right-3 bg-indigo-600 hover:bg-indigo-500 text-white p-2 rounded-lg transition-all shadow-lg">
+                    <i class="fas fa-copy"></i>
+                </button>
+            </div>
+
+            <div id="modal-run-section" class="hidden mb-6">
+                <p id="modal-label-run" class="text-slate-400 text-xs mb-4 uppercase tracking-widest font-bold">Run Server:</p>
+                <div class="relative group">
+                    <pre id="modal-code-run" class="bg-black/40 p-5 rounded-xl border border-slate-700 text-sm text-indigo-300 font-mono break-all whitespace-pre-wrap leading-relaxed"></pre>
+                    <button id="modal-copy-btn-run" class="absolute top-3 right-3 bg-indigo-600 hover:bg-indigo-500 text-white p-2 rounded-lg transition-all shadow-lg">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div id="modal-secondary-section" class="hidden">
+                <p id="modal-label-secondary" class="text-slate-400 text-xs mb-4 uppercase tracking-widest font-bold">Client Configuration JSON:</p>
+                <div class="relative group">
+                    <pre id="modal-code-secondary" class="bg-black/40 p-5 rounded-xl border border-slate-700 text-[11px] text-emerald-300 font-mono break-all whitespace-pre-wrap leading-relaxed"></pre>
+                    <button id="modal-copy-btn-secondary" class="absolute top-3 right-3 bg-emerald-600 hover:bg-emerald-500 text-white p-2 rounded-lg transition-all shadow-lg">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const registryData = {
-                "format_version": "1",
+                "format_version": "3",
                 "registry_name": "skill-registry",
                 "base_url": "https://raw.githubusercontent.com/ficiverson/skill-registry/main",
-                "updated_at": "2026-04-07T07:52:17+00:00",
+                "updated_at": "2026-04-08T20:10:09+00:00",
                 "skills": [
                     {
                         "category": "development",
@@ -188,6 +259,12 @@
                             "release",
                             "publish"
                         ],
+                        "platforms": [
+                            "claude",
+                            "gemini",
+                            "codex",
+                            "agents"
+                        ],
                         "owner": {
                             "name": "Fernando Souto",
                             "email": "me@fernandosouto.dev"
@@ -198,7 +275,11 @@
                                 "path": "packs/development/publish-to-pypi-1.0.0.skillpack",
                                 "sha256": "6e89f6921a6f47d7a0783738629fc2fa88cbef4d576d7ce8b105a99a311b5365",
                                 "published_at": "2026-04-06T21:49:35+00:00",
-                                "size_bytes": 5543
+                                "size_bytes": 5543,
+                                "export_formats": [
+                                    "system-prompt",
+                                    "mcp-server"
+                                ]
                             }
                         ]
                     },
@@ -221,6 +302,12 @@
                             "engineering-rubric-works-for-any-language-or-stack",
                             "not-just-python/langchain"
                         ],
+                        "platforms": [
+                            "claude",
+                            "gemini",
+                            "codex",
+                            "agents"
+                        ],
                         "owner": {
                             "name": "Fernando Souto",
                             "email": "me@fernandosouto.dev"
@@ -231,14 +318,22 @@
                                 "path": "packs/evaluation/ai-eng-evaluator-0.2.0.skillpack",
                                 "sha256": "cc49e8d525bb0d163b23e48656961a040014b22ee5789d75a67a73a42ea67f8c",
                                 "published_at": "2026-04-06T13:39:40+00:00",
-                                "size_bytes": 38473
+                                "size_bytes": 38473,
+                                "export_formats": [
+                                    "system-prompt",
+                                    "mcp-server"
+                                ]
                             },
                             {
                                 "version": "1.0.0",
                                 "path": "packs/evaluation/ai-eng-evaluator-1.0.0.skillpack",
                                 "sha256": "10d16ba0db7b768219d0adb6c3dd8ea68b62e9f719a0132fdcd2bcf10271c0e6",
                                 "published_at": "2026-04-06T13:43:36+00:00",
-                                "size_bytes": 38474
+                                "size_bytes": 38474,
+                                "export_formats": [
+                                    "system-prompt",
+                                    "mcp-server"
+                                ]
                             }
                         ]
                     },
@@ -259,6 +354,13 @@
                             "negative-tests",
                             "bdd"
                         ],
+                        "platforms": [
+                            "claude",
+                            "gemini",
+                            "codex",
+                            "agents",
+                            "vscode"
+                        ],
                         "owner": {
                             "name": "Fernando Souto",
                             "email": "me@fernandosouto.dev"
@@ -269,7 +371,14 @@
                                 "path": "packs/evaluation/user-story-test-cases-0.1.0.skillpack",
                                 "sha256": "b1bfde6e7fa4823d342148e40ad0e590a978d917c7c3a2009fe13903ccf15a35",
                                 "published_at": "2026-04-06T13:54:02+00:00",
-                                "size_bytes": 1221
+                                "size_bytes": 1221,
+                                "export_formats": [
+                                    "system-prompt",
+                                    "gpt-json",
+                                    "gem-txt",
+                                    "bedrock-xml",
+                                    "mcp-server"
+                                ]
                             }
                         ]
                     },
@@ -286,6 +395,13 @@
                             "professionalism",
                             "productivity"
                         ],
+                        "platforms": [
+                            "claude",
+                            "gemini",
+                            "codex",
+                            "agents",
+                            "vscode"
+                        ],
                         "owner": {
                             "name": "Fernando Souto",
                             "email": "me@fernandosouto.dev"
@@ -296,7 +412,14 @@
                                 "path": "packs/productivity/email-tone-reviewer-1.0.0.skillpack",
                                 "sha256": "d086fe8f75b228c6a8a19d1f7956787a3678bd4a0835379aba305b6d5460e300",
                                 "published_at": "2026-04-07T07:51:16+00:00",
-                                "size_bytes": 2620
+                                "size_bytes": 2620,
+                                "export_formats": [
+                                    "system-prompt",
+                                    "gpt-json",
+                                    "gem-txt",
+                                    "bedrock-xml",
+                                    "mcp-server"
+                                ]
                             }
                         ]
                     },
@@ -313,6 +436,13 @@
                             "transcript",
                             "notes"
                         ],
+                        "platforms": [
+                            "claude",
+                            "gemini",
+                            "codex",
+                            "agents",
+                            "vscode"
+                        ],
                         "owner": {
                             "name": "Fernando Souto",
                             "email": "me@fernandosouto.dev"
@@ -323,7 +453,14 @@
                                 "path": "packs/productivity/meeting-summarizer-1.0.0.skillpack",
                                 "sha256": "a42d5540ba4f2c06d4bddadc09b443ce0079cd176d49056c8796f111cb7210b1",
                                 "published_at": "2026-04-07T07:51:16+00:00",
-                                "size_bytes": 2426
+                                "size_bytes": 2426,
+                                "export_formats": [
+                                    "system-prompt",
+                                    "gpt-json",
+                                    "gem-txt",
+                                    "bedrock-xml",
+                                    "mcp-server"
+                                ]
                             }
                         ]
                     },
@@ -340,6 +477,13 @@
                             "personal-brand",
                             "productivity"
                         ],
+                        "platforms": [
+                            "claude",
+                            "gemini",
+                            "codex",
+                            "agents",
+                            "vscode"
+                        ],
                         "owner": {
                             "name": "Fernando Souto",
                             "email": "me@fernandosouto.dev"
@@ -350,7 +494,14 @@
                                 "path": "packs/productivity/post-linkedin-1.0.0.skillpack",
                                 "sha256": "48765b18cac9fd2726a46555f4ab7ba16fa2aaf912ff330ee50116b89a750cc0",
                                 "published_at": "2026-04-07T07:51:17+00:00",
-                                "size_bytes": 3503
+                                "size_bytes": 3503,
+                                "export_formats": [
+                                    "system-prompt",
+                                    "gpt-json",
+                                    "gem-txt",
+                                    "bedrock-xml",
+                                    "mcp-server"
+                                ]
                             }
                         ]
                     },
@@ -368,6 +519,13 @@
                             "acceptance-criteria",
                             "backlog"
                         ],
+                        "platforms": [
+                            "claude",
+                            "gemini",
+                            "codex",
+                            "agents",
+                            "vscode"
+                        ],
                         "owner": {
                             "name": "Fernando Souto",
                             "email": "me@fernandosouto.dev"
@@ -378,7 +536,14 @@
                                 "path": "packs/productivity/sprint-grooming-1.0.0.skillpack",
                                 "sha256": "4e7e47485723d1fc8b822ab0d3b08284aa218e7fa68b365fb117f7b348f5aa5a",
                                 "published_at": "2026-04-07T07:51:17+00:00",
-                                "size_bytes": 3134
+                                "size_bytes": 3134,
+                                "export_formats": [
+                                    "system-prompt",
+                                    "gpt-json",
+                                    "gem-txt",
+                                    "bedrock-xml",
+                                    "mcp-server"
+                                ]
                             }
                         ]
                     },
@@ -393,6 +558,12 @@
                             "openapi",
                             "backend-tests"
                         ],
+                        "platforms": [
+                            "claude",
+                            "gemini",
+                            "codex",
+                            "agents"
+                        ],
                         "owner": {
                             "name": "Fernando Souto",
                             "email": "me@fernandosouto.dev"
@@ -403,7 +574,43 @@
                                 "path": "packs/testing/backend-api-tester-1.0.0.skillpack",
                                 "sha256": "ea9ce9454f73069d9dee3b3c6dc52fd2d4a459f2d0f697296234ed3b3c992c51",
                                 "published_at": "2026-04-06T22:03:19+00:00",
-                                "size_bytes": 1724
+                                "size_bytes": 1724,
+                                "export_formats": [
+                                    "system-prompt",
+                                    "gpt-json",
+                                    "gem-txt",
+                                    "bedrock-xml",
+                                    "mcp-server"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "category": "testing",
+                        "name": "full-featured-tester",
+                        "latest": "1.0.0",
+                        "description": "Use this skill to test the full lifecycle of the skills-forge toolkit.\nTriggers on: lifecycle, e2e, test, pack, publish, export, mcp, ruff, mypy.\nThis is a comprehensive subject for verification purposes.",
+                        "tags": [
+                            "e2e-test",
+                            "lifecycle"
+                        ],
+                        "platforms": [
+                            "claude"
+                        ],
+                        "owner": {
+                            "name": "Antigravity E2E",
+                            "email": "e2e@antigravity.ai"
+                        },
+                        "versions": [
+                            {
+                                "version": "1.0.0",
+                                "path": "packs/testing/full-featured-tester-1.0.0.skillpack",
+                                "sha256": "f842947a1fca4811d90d46853ef4e9b0c42c4bd891969c43a9baa229576bc4a7",
+                                "published_at": "2026-04-08T20:10:09+00:00",
+                                "size_bytes": 3484,
+                                "export_formats": [
+                                    "system-prompt"
+                                ]
                             }
                         ]
                     }
@@ -465,6 +672,24 @@ Note: If 'skills-forge' is not installed, run 'pip install skills-forge' first.`
             let filteredSkills = registryData.skills.slice();
             let renderedCount = 0;
 
+            // Keys are exact CLI flag values:
+            //   install targets  → `skills-forge install <url> --target <key>`
+            //   export formats   → `skills-forge export <pack> --format <key>`
+            const PLATFORM_META = {
+                // ── install targets (skills-forge install --target <key>) ──────
+                'claude':  { label: 'Claude',  cls: 'bg-indigo-500/15 text-indigo-300 border-indigo-500/30',  icon: '✦', type: 'install' },
+                'gemini':  { label: 'Gemini',  cls: 'bg-blue-500/15 text-blue-300 border-blue-500/30',        icon: '✦', type: 'install' },
+                'codex':   { label: 'Codex',   cls: 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30', icon: '✦', type: 'install' },
+                'agents':  { label: 'Agents',  cls: 'bg-orange-500/15 text-orange-300 border-orange-500/30',  icon: '✦', type: 'install' },
+                'vscode':  { label: 'VS Code', cls: 'bg-cyan-500/15 text-cyan-300 border-cyan-500/30',        icon: '✦', type: 'install', scope: 'project' },
+                // ── export formats (skills-forge export <pack> --format <key>) ─
+                'system-prompt': { label: 'Prompt',  cls: 'bg-slate-500/15 text-slate-300 border-slate-500/30',   icon: '✦', type: 'export' },
+                'gpt-json':      { label: 'GPT',     cls: 'bg-teal-500/15 text-teal-300 border-teal-500/30',      icon: '✦', type: 'export' },
+                'gem-txt':       { label: 'Gem',     cls: 'bg-amber-500/15 text-amber-300 border-amber-500/30',   icon: '✦', type: 'export' },
+                'bedrock-xml':   { label: 'Bedrock', cls: 'bg-rose-500/15 text-rose-300 border-rose-500/30',      icon: '✦', type: 'export' },
+                'mcp-server':    { label: 'MCP',     cls: 'bg-purple-500/15 text-purple-300 border-purple-500/30', icon: '✦', type: 'export' },
+            };
+
             function buildCard(skill) {
                 const latest = skill.versions.find(v => v.version === skill.latest);
                 const fullUrl = `${registryData.base_url}/${latest.path}`;
@@ -472,6 +697,11 @@ Note: If 'skills-forge' is not installed, run 'pip install skills-forge' first.`
                 const tagsHtml = skill.tags.map(tag =>
                     `<span class="tag-pill text-[9px] px-2 py-0.5 rounded-md uppercase font-bold tracking-tighter">#${tag}</span>`
                 ).join(' ');
+                const exportFormats = Array.isArray(latest.export_formats) ? latest.export_formats : [];
+                const platformsHtml = exportFormats.map(p => {
+                    const m = PLATFORM_META[p] || { label: p, cls: 'bg-slate-600/30 text-slate-400 border-slate-600/30', icon: '·' };
+                    return `<span data-action="open-modal" data-platform="${p}" data-skill-idx="${registryData.skills.indexOf(skill)}" class="cursor-pointer hover:scale-105 active:scale-95 transition-transform inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full border ${m.cls}">${m.icon} ${m.label}</span>`;
+                }).join('');
                 return `
                     <div class="skill-card bg-slate-800/30 border border-slate-700/50 rounded-[2.5rem] p-10 flex flex-col h-full relative group shadow-2xl"
                          data-title="${skill.name.toLowerCase()}"
@@ -484,6 +714,7 @@ Note: If 'skills-forge' is not installed, run 'pip install skills-forge' first.`
                         </div>
                         <h3 class="text-3xl font-bold mb-4 text-white group-hover:text-indigo-300 transition-colors tracking-tight italic">${skill.name}</h3>
                         <p class="text-slate-400 mb-6 leading-relaxed text-sm italic">"${skill.description}"</p>
+                        ${platformsHtml ? `<div class="flex flex-wrap gap-1.5 mb-4">${platformsHtml}</div>` : ''}
                         <div class="flex flex-wrap gap-2 mb-10">${tagsHtml}</div>
                         <div class="space-y-6 mt-auto">
                             <div class="relative">
@@ -544,13 +775,113 @@ Note: If 'skills-forge' is not installed, run 'pip install skills-forge' first.`
                 renderedCount += batch.length;
             }
 
+            // ── Modal Logic ───────────────────────────────────────────────
+            const modal = document.getElementById('export-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalPlatformBadge = document.getElementById('modal-platform-badge');
+            const modalCode = document.getElementById('modal-code');
+            const modalCopyBtn = document.getElementById('modal-copy-btn');
+            const modalLabelPrimary = document.getElementById('modal-label-primary');
+            const modalRunSection = document.getElementById('modal-run-section');
+            const modalCodeRun = document.getElementById('modal-code-run');
+            const modalCopyBtnRun = document.getElementById('modal-copy-btn-run');
+            const modalSecondarySection = document.getElementById('modal-secondary-section');
+            const modalCodeSecondary = document.getElementById('modal-code-secondary');
+            const modalCopyBtnSecondary = document.getElementById('modal-copy-btn-secondary');
+
+            window.closeModal = (e) => {
+                modal.style.display = 'none';
+                document.body.classList.remove('modal-open');
+            };
+
+            function openExportModal(platformKey, skillIdx) {
+                const skill = registryData.skills[skillIdx];
+                const meta = PLATFORM_META[platformKey];
+                const latest = skill.versions.find(v => v.version === skill.latest);
+                const fullUrl = `${registryData.base_url}/${latest.path}`;
+
+                modalTitle.textContent = skill.name;
+                modalPlatformBadge.textContent = `${meta.icon} ${meta.label}`;
+                modalPlatformBadge.className = `inline-block px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest mb-4 ${meta.cls}`;
+
+                modalRunSection.classList.add('hidden');
+                modalSecondarySection.classList.add('hidden');
+                modalLabelPrimary.textContent = 'Command:';
+
+                let command = '';
+                if (meta.type === 'install') {
+                    // Install targets: use full CDN URL + --target <platformKey>
+                    // vscode requires --scope project (no global skills dir)
+                    const scopeFlag = meta.scope === 'project' ? ' --scope project' : '';
+                    command = `skills-forge install ${fullUrl} --sha256 ${latest.sha256} --target ${platformKey}${scopeFlag}`;
+                    modalLabelPrimary.textContent = 'Install Command:';
+                } else if (meta.type === 'export') {
+                    // Export formats: use --format <platformKey> (exact CLI value)
+                    const formatFlag = platformKey !== 'system-prompt' ? ` --format ${platformKey}` : '';
+                    const outputFlag = platformKey === 'mcp-server' ? ` -o ./exports/` : '';
+                    command = `skills-forge export ./${latest.path}${formatFlag}${outputFlag}`;
+                    modalLabelPrimary.textContent = 'Export Command:';
+
+                    if (platformKey === 'mcp-server') {
+                        modalLabelPrimary.textContent = 'Export + Run:';
+                        modalRunSection.classList.remove('hidden');
+                        modalSecondarySection.classList.remove('hidden');
+
+                        const runCmd = `uvx --from "mcp[cli]" mcp run ./exports/${skill.name}-mcp-server.py`;
+                        modalCodeRun.textContent = runCmd;
+                        modalCopyBtnRun.onclick = () => {
+                            navigator.clipboard.writeText(runCmd).then(() => {
+                                const icon = modalCopyBtnRun.querySelector('i');
+                                icon.className = 'fas fa-check';
+                                setTimeout(() => icon.className = 'fas fa-copy', 2000);
+                            });
+                        };
+
+                        const snippet = {
+                            [skill.name]: {
+                                "command": "uvx",
+                                "args": [
+                                    "--from", "mcp[cli]",
+                                    "mcp", "run",
+                                    `./exports/${skill.name}-mcp-server.py`
+                                ]
+                            }
+                        };
+                        const snippetStr = JSON.stringify(snippet, null, 2);
+                        modalCodeSecondary.textContent = snippetStr;
+                        modalCopyBtnSecondary.onclick = () => {
+                            navigator.clipboard.writeText(snippetStr).then(() => {
+                                const icon = modalCopyBtnSecondary.querySelector('i');
+                                icon.className = 'fas fa-check';
+                                setTimeout(() => icon.className = 'fas fa-copy', 2000);
+                            });
+                        };
+                    }
+                }
+
+                modalCode.textContent = command;
+
+                modalCopyBtn.onclick = () => {
+                    navigator.clipboard.writeText(command).then(() => {
+                        const icon = modalCopyBtn.querySelector('i');
+                        icon.className = 'fas fa-check';
+                        setTimeout(() => icon.className = 'fas fa-copy', 2000);
+                    });
+                };
+
+                modal.style.display = 'flex';
+                document.body.classList.add('modal-open');
+            }
+
             // ── event delegation — one listener handles every card action ─────
             container.addEventListener('click', e => {
                 const target = e.target.closest('[data-action]');
                 if (!target) return;
                 const action = target.dataset.action;
 
-                if (action === 'copy') {
+                if (action === 'open-modal') {
+                    openExportModal(target.dataset.platform, parseInt(target.dataset.skillIdx));
+                } else if (action === 'copy') {
                     navigator.clipboard.writeText(target.dataset.cmd).then(() => {
                         showSuccess(target, 'COPIED!');
                     });

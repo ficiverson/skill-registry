@@ -45,8 +45,8 @@ def _pick_latest_version(skill: dict) -> dict:
 def _render_skill_table(skills: list[dict], base_url: str) -> str:
     header = "\n".join(
         [
-            "| Category | Skill | Latest | Owner | Published At | Size | SHA256 | Tags | Description | Download |",
-            "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+            "| Category | Skill | Latest | Install Targets | Export Formats | Owner | Published At | Size | SHA256 | Tags | Description | Download |",
+            "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |",
         ]
     )
     rows: list[str] = []
@@ -58,6 +58,8 @@ def _render_skill_table(skills: list[dict], base_url: str) -> str:
         description = str(skill.get("description", "")).replace("\n", " ").replace("|", "\\|")
         tags = skill.get("tags", [])
         tags_text = ", ".join(f"`{tag}`" for tag in tags) if isinstance(tags, list) else ""
+        platforms = skill.get("platforms", [])
+        platforms_text = " ".join(f"`{p}`" for p in platforms) if isinstance(platforms, list) else ""
         owner = skill.get("owner", {})
         owner_name = owner.get("name", "") if isinstance(owner, dict) else ""
         owner_email = owner.get("email", "") if isinstance(owner, dict) else ""
@@ -71,13 +73,15 @@ def _render_skill_table(skills: list[dict], base_url: str) -> str:
         pack_path = latest_version.get("path", "")
         download_url = f"{base_url.rstrip('/')}/{pack_path}" if pack_path else ""
         download = f"[download]({download_url})" if download_url else ""
+        export_formats = latest_version.get("export_formats", [])
+        export_formats_text = " ".join(f"`{f}`" for f in export_formats) if isinstance(export_formats, list) else ""
 
         rows.append(
-            f"| `{category}` | `{name}` | `{version or latest}` | `{owner_text}` | `{published_at}` | `{size}` | `{sha256}` | {tags_text} | {description} | {download} |"
+            f"| `{category}` | `{name}` | `{version or latest}` | {platforms_text} | {export_formats_text} | `{owner_text}` | `{published_at}` | `{size}` | `{sha256}` | {tags_text} | {description} | {download} |"
         )
 
     if not rows:
-        rows.append("| - | - | - | - | - | - | - | - | - | - |")
+        rows.append("| - | - | - | - | - | - | - | - | - | - | - |")
 
     return "\n".join([header, *rows])
 
@@ -125,7 +129,7 @@ def main() -> int:
             "",
             "This registry index is generated and maintained automatically using the [**Skills Forge**](https://pypi.org/project/skills-forge/) library, crafted by [Fernando Souto](https://github.com/ficiverson/skills-forge).",
             "",
-            "Skills Forge is a powerful distribution ecosystem that allows AI engineers to package specialized knowledge, stylistic guidelines, and technical workflows into versioned, shareable `.skillpack` artifacts. By acting as a decentralized registry, this repository provides secure, SHA256-verified access to context-aware expertise, empowering agents like **Claude Code** to directly integrate with your preferred stack.",
+            "Skills Forge is a **universal bridge** for AI capabilities. It allows engineers to package specialized knowledge, technical workflows, and stylistic guidelines into deterministic, versioned `.skillpack` artifacts. Built on the [**agentskills.io**](https://agentskills.io) open standard adopted by Anthropic, Google, and OpenAI, these skills are portable across every major agent-CLI and chatbot platform via native installation or universal exports (System Prompts, GPT JSON, MCP).",
             "",
             "## Registry index",
             "",
@@ -139,6 +143,13 @@ def main() -> int:
             "## Skills",
             "",
             _render_skill_table(skills, base_url),
+            "",
+            "## Multi-Platform Support",
+            "",
+            "Every skill in this registry can be delivered via:",
+            "1. **Native CLI Install**: `skills-forge install <URL> --target [claude|gemini|codex|vscode|agents]`",
+            "2. **Universal Export**: Render any skill as a System Prompt, GPT JSON, or Gemini Gem using `skills-forge export`.",
+            "3. **MCP (Model Context Protocol)**: Any skill can be served as an MCP Prompt primitive for live injection into Claude Desktop or Cursor.",
             "",
         ]
     )
