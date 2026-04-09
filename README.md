@@ -8,10 +8,10 @@ Skills Forge is a **universal bridge** for AI capabilities. It allows engineers 
 
 - `format_version`: `3`
 - `base_url`: `https://raw.githubusercontent.com/ficiverson/skill-registry/main`
-- `updated_at`: `2026-04-08T00:00:00+00:00`
-- `skills_count`: `8`
+- `updated_at`: `2026-04-08T20:10:09+00:00`
+- `skills_count`: `9`
 - `categories`: `development, evaluation, productivity, testing`
-- `owners`: `Fernando Souto`
+- `owners`: `Antigravity E2E, Fernando Souto`
 
 ## Skills
 
@@ -25,6 +25,7 @@ Skills Forge is a **universal bridge** for AI capabilities. It allows engineers 
 | `productivity` | `post-linkedin` | `1.0.0` | `claude` `gemini` `codex` `agents` `vscode` | `system-prompt` `gpt-json` `gem-txt` `bedrock-xml` `mcp-server` | `Fernando Souto (me@fernandosouto.dev)` | `2026-04-07T07:51:17+00:00` | `3.4 KB` | `48765b18cac9fd2726a46555f4ab7ba16fa2aaf912ff330ee50116b89a750cc0` | `linkedin`, `social`, `content`, `writing`, `personal-brand`, `productivity` | Crafts high-performing LinkedIn posts from raw ideas, achievements, or lessons learned. Produces scroll-stopping hooks, structured body copy, and targeted hashtags calibrated for reach and engagement. | [download](https://raw.githubusercontent.com/ficiverson/skill-registry/main/packs/productivity/post-linkedin-1.0.0.skillpack) |
 | `productivity` | `sprint-grooming` | `1.0.0` | `claude` `gemini` `codex` `agents` `vscode` | `system-prompt` `gpt-json` `gem-txt` `bedrock-xml` `mcp-server` | `Fernando Souto (me@fernandosouto.dev)` | `2026-04-07T07:51:17+00:00` | `3.1 KB` | `4e7e47485723d1fc8b822ab0d3b08284aa218e7fa68b365fb117f7b348f5aa5a` | `agile`, `scrum`, `user-stories`, `sprint`, `grooming`, `acceptance-criteria`, `backlog` | Transforms rough ideas, feature requests, or Slack messages into production-ready user stories with acceptance criteria, story point estimates, and definition of done. INVEST-compliant output ready to paste into Jira, Linear, or GitHub Issues. | [download](https://raw.githubusercontent.com/ficiverson/skill-registry/main/packs/productivity/sprint-grooming-1.0.0.skillpack) |
 | `testing` | `backend-api-tester` | `1.0.0` | `claude` `gemini` `codex` `agents` | `system-prompt` `gpt-json` `gem-txt` `bedrock-xml` `mcp-server` | `Fernando Souto (me@fernandosouto.dev)` | `2026-04-06T22:03:19+00:00` | `1.7 KB` | `ea9ce9454f73069d9dee3b3c6dc52fd2d4a459f2d0f697296234ed3b3c992c51` | `testing`, `api`, `openapi`, `backend-tests` | Use this skill when generating or running automated backend API tests based on OpenAPI/Swagger specifications and test plans. Triggers on: backend tests, api testing, openapi spec, swagger, integration tests, validate endpoints, API contract. | [download](https://raw.githubusercontent.com/ficiverson/skill-registry/main/packs/testing/backend-api-tester-1.0.0.skillpack) |
+| `testing` | `full-featured-tester` | `1.0.0` | `claude` | `system-prompt` | `Antigravity E2E (e2e@antigravity.ai)` | `2026-04-08T20:10:09+00:00` | `3.4 KB` | `f842947a1fca4811d90d46853ef4e9b0c42c4bd891969c43a9baa229576bc4a7` | `e2e-test`, `lifecycle` | Use this skill to test the full lifecycle of the skills-forge toolkit. Triggers on: lifecycle, e2e, test, pack, publish, export, mcp, ruff, mypy. This is a comprehensive subject for verification purposes. | [download](https://raw.githubusercontent.com/ficiverson/skill-registry/main/packs/testing/full-featured-tester-1.0.0.skillpack) |
 
 ## Multi-Platform Support
 
