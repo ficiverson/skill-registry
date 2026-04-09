@@ -252,7 +252,7 @@
                 "format_version": "3",
                 "registry_name": "skill-registry",
                 "base_url": "https://raw.githubusercontent.com/ficiverson/skill-registry/main",
-                "updated_at": "2026-04-09T11:16:47+00:00",
+                "updated_at": "2026-04-09T11:33:34+00:00",
                 "skills": [
                     {
                         "category": "development",
@@ -283,6 +283,45 @@
                                 "sha256": "03e55c70aa25273bcccdaf7898f04569bd8f35d7d32e9bb7f251a538253dce7e",
                                 "published_at": "2026-04-06T21:49:35+00:00",
                                 "size_bytes": 5566,
+                                "export_formats": [
+                                    "system-prompt",
+                                    "gpt-json",
+                                    "gem-txt",
+                                    "bedrock-xml",
+                                    "mcp-server"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "category": "distribution",
+                        "name": "release-preflight",
+                        "latest": "0.1.0",
+                        "description": ">\nFive-phase pre-release verification for skills-forge projects: pytest, ruff, mypy,\npack consistency (sha256/size/manifest vs index.json), schema alignment\n(FORMAT_VERSION constants), CLI sandbox UAT (every command), and release hygiene\n(branch, version, notes, changelog, clean git status).\nTrigger on: \"ready to release\", \"run all checks\", \"pre-release checklist\",\n\"verify before tagging\", \"UAT\", \"preflight\", \"PyPI publish check\",\n\"pack consistency\", \"schema aligned\", \"registry up-to-date\", \"run lint and tests\".\nAlways run all phases unless the user explicitly requests a single one.",
+                        "tags": [
+                            "release",
+                            "ci",
+                            "preflight",
+                            "distribution"
+                        ],
+                        "platforms": [
+                            "claude",
+                            "gemini",
+                            "codex",
+                            "vscode",
+                            "agents"
+                        ],
+                        "owner": {
+                            "name": "ficiverson",
+                            "email": "efexepe@gmail.com"
+                        },
+                        "versions": [
+                            {
+                                "version": "0.1.0",
+                                "path": "packs/distribution/release-preflight-0.1.0.skillpack",
+                                "sha256": "54e73051ac05ebc1f0485b238fb6850084c6f1777c64aee745c46024e37733f0",
+                                "published_at": "2026-04-09T11:33:34+00:00",
+                                "size_bytes": 9131,
                                 "export_formats": [
                                     "system-prompt",
                                     "gpt-json",
