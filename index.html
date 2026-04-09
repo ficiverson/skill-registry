@@ -133,7 +133,7 @@
                 <div class="bg-indigo-600 p-2 rounded-lg text-2xl shadow-lg shadow-indigo-500/20">⚒️</div>
                 <div>
                     <h1 class="text-xl font-bold tracking-tight uppercase hidden sm:block">Skill Registry <span
-                            class="text-indigo-400">0.1.0</span></h1>
+                            class="text-indigo-400">0.2.0</span></h1>
                     <p id="last-updated" class="text-[9px] text-slate-500 font-mono uppercase tracking-widest"></p>
                 </div>
             </div>
@@ -219,20 +219,26 @@
             </div>
 
             <div id="modal-run-section" class="hidden mb-6">
-                <p id="modal-label-run" class="text-slate-400 text-xs mb-4 uppercase tracking-widest font-bold">Run Server:</p>
+                <p id="modal-label-run" class="text-slate-400 text-xs mb-4 uppercase tracking-widest font-bold">Run
+                    Server:</p>
                 <div class="relative group">
-                    <pre id="modal-code-run" class="bg-black/40 p-5 rounded-xl border border-slate-700 text-sm text-indigo-300 font-mono break-all whitespace-pre-wrap leading-relaxed"></pre>
-                    <button id="modal-copy-btn-run" class="absolute top-3 right-3 bg-indigo-600 hover:bg-indigo-500 text-white p-2 rounded-lg transition-all shadow-lg">
+                    <pre id="modal-code-run"
+                        class="bg-black/40 p-5 rounded-xl border border-slate-700 text-sm text-indigo-300 font-mono break-all whitespace-pre-wrap leading-relaxed"></pre>
+                    <button id="modal-copy-btn-run"
+                        class="absolute top-3 right-3 bg-indigo-600 hover:bg-indigo-500 text-white p-2 rounded-lg transition-all shadow-lg">
                         <i class="fas fa-copy"></i>
                     </button>
                 </div>
             </div>
 
             <div id="modal-secondary-section" class="hidden">
-                <p id="modal-label-secondary" class="text-slate-400 text-xs mb-4 uppercase tracking-widest font-bold">Client Configuration JSON:</p>
+                <p id="modal-label-secondary" class="text-slate-400 text-xs mb-4 uppercase tracking-widest font-bold">
+                    Client Configuration JSON:</p>
                 <div class="relative group">
-                    <pre id="modal-code-secondary" class="bg-black/40 p-5 rounded-xl border border-slate-700 text-[11px] text-emerald-300 font-mono break-all whitespace-pre-wrap leading-relaxed"></pre>
-                    <button id="modal-copy-btn-secondary" class="absolute top-3 right-3 bg-emerald-600 hover:bg-emerald-500 text-white p-2 rounded-lg transition-all shadow-lg">
+                    <pre id="modal-code-secondary"
+                        class="bg-black/40 p-5 rounded-xl border border-slate-700 text-[11px] text-emerald-300 font-mono break-all whitespace-pre-wrap leading-relaxed"></pre>
+                    <button id="modal-copy-btn-secondary"
+                        class="absolute top-3 right-3 bg-emerald-600 hover:bg-emerald-500 text-white p-2 rounded-lg transition-all shadow-lg">
                         <i class="fas fa-copy"></i>
                     </button>
                 </div>
@@ -677,17 +683,17 @@ Note: If 'skills-forge' is not installed, run 'pip install skills-forge' first.`
             //   export formats   → `skills-forge export <pack> --format <key>`
             const PLATFORM_META = {
                 // ── install targets (skills-forge install --target <key>) ──────
-                'claude':  { label: 'Claude',  cls: 'bg-indigo-500/15 text-indigo-300 border-indigo-500/30',  icon: '✦', type: 'install' },
-                'gemini':  { label: 'Gemini',  cls: 'bg-blue-500/15 text-blue-300 border-blue-500/30',        icon: '✦', type: 'install' },
-                'codex':   { label: 'Codex',   cls: 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30', icon: '✦', type: 'install' },
-                'agents':  { label: 'Agents',  cls: 'bg-orange-500/15 text-orange-300 border-orange-500/30',  icon: '✦', type: 'install' },
-                'vscode':  { label: 'VS Code', cls: 'bg-cyan-500/15 text-cyan-300 border-cyan-500/30',        icon: '✦', type: 'install', scope: 'project' },
+                'claude': { label: 'Claude', cls: 'bg-indigo-500/15 text-indigo-300 border-indigo-500/30', icon: '✦', type: 'install' },
+                'gemini': { label: 'Gemini', cls: 'bg-blue-500/15 text-blue-300 border-blue-500/30', icon: '✦', type: 'install' },
+                'codex': { label: 'Codex', cls: 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30', icon: '✦', type: 'install' },
+                'agents': { label: 'Agents', cls: 'bg-orange-500/15 text-orange-300 border-orange-500/30', icon: '✦', type: 'install' },
+                'vscode': { label: 'VS Code', cls: 'bg-cyan-500/15 text-cyan-300 border-cyan-500/30', icon: '✦', type: 'install', scope: 'project' },
                 // ── export formats (skills-forge export <pack> --format <key>) ─
-                'system-prompt': { label: 'Prompt',  cls: 'bg-slate-500/15 text-slate-300 border-slate-500/30',   icon: '✦', type: 'export' },
-                'gpt-json':      { label: 'GPT',     cls: 'bg-teal-500/15 text-teal-300 border-teal-500/30',      icon: '✦', type: 'export' },
-                'gem-txt':       { label: 'Gem',     cls: 'bg-amber-500/15 text-amber-300 border-amber-500/30',   icon: '✦', type: 'export' },
-                'bedrock-xml':   { label: 'Bedrock', cls: 'bg-rose-500/15 text-rose-300 border-rose-500/30',      icon: '✦', type: 'export' },
-                'mcp-server':    { label: 'MCP',     cls: 'bg-purple-500/15 text-purple-300 border-purple-500/30', icon: '✦', type: 'export' },
+                'system-prompt': { label: 'Prompt', cls: 'bg-slate-500/15 text-slate-300 border-slate-500/30', icon: '✦', type: 'export' },
+                'gpt-json': { label: 'GPT', cls: 'bg-teal-500/15 text-teal-300 border-teal-500/30', icon: '✦', type: 'export' },
+                'gem-txt': { label: 'Gem', cls: 'bg-amber-500/15 text-amber-300 border-amber-500/30', icon: '✦', type: 'export' },
+                'bedrock-xml': { label: 'Bedrock', cls: 'bg-rose-500/15 text-rose-300 border-rose-500/30', icon: '✦', type: 'export' },
+                'mcp-server': { label: 'MCP', cls: 'bg-purple-500/15 text-purple-300 border-purple-500/30', icon: '✦', type: 'export' },
             };
 
             function buildCard(skill) {
