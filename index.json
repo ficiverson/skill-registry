@@ -116,10 +116,7 @@
             "gpt-json",
             "gem-txt",
             "bedrock-xml",
-            "mcp-server",
-            "mistral-json",
-            "gemini-api",
-            "openai-assistants"
+            "mcp-server"
           ]
         },
         {
@@ -133,10 +130,7 @@
             "gpt-json",
             "gem-txt",
             "bedrock-xml",
-            "mcp-server",
-            "mistral-json",
-            "gemini-api",
-            "openai-assistants"
+            "mcp-server"
           ]
         },
         {
@@ -150,10 +144,7 @@
             "gpt-json",
             "gem-txt",
             "bedrock-xml",
-            "mcp-server",
-            "mistral-json",
-            "gemini-api",
-            "openai-assistants"
+            "mcp-server"
           ]
         }
       ]
