@@ -252,7 +252,7 @@
                 "format_version": "3",
                 "registry_name": "skill-registry",
                 "base_url": "https://raw.githubusercontent.com/ficiverson/skill-registry/main",
-                "updated_at": "2026-04-09T11:33:34+00:00",
+                "updated_at": "2026-04-10T18:30:00+00:00",
                 "skills": [
                     {
                         "category": "development",
@@ -296,8 +296,8 @@
                     {
                         "category": "distribution",
                         "name": "release-preflight",
-                        "latest": "0.1.0",
-                        "description": ">\nFive-phase pre-release verification for skills-forge projects: pytest, ruff, mypy,\npack consistency (sha256/size/manifest vs index.json), schema alignment\n(FORMAT_VERSION constants), CLI sandbox UAT (every command), and release hygiene\n(branch, version, notes, changelog, clean git status).\nTrigger on: \"ready to release\", \"run all checks\", \"pre-release checklist\",\n\"verify before tagging\", \"UAT\", \"preflight\", \"PyPI publish check\",\n\"pack consistency\", \"schema aligned\", \"registry up-to-date\", \"run lint and tests\".\nAlways run all phases unless the user explicitly requests a single one.",
+                        "latest": "0.2.0",
+                        "description": "Five-phase pre-release check for skills-forge: pytest/ruff/mypy, pack consistency (sha256/size/manifest), schema alignment (FORMAT_VERSION), CLI sandbox UAT (all commands including registry, test, SHA256 install), and release hygiene. Trigger on: \"ready to release\", \"run preflight\", \"pre-release checklist\", \"verify before tagging\", \"UAT\", \"pack consistency\", \"registry up-to-date\", \"run lint and tests\", \"PyPI publish check\". Always run all phases unless the user explicitly requests a single one.",
                         "tags": [
                             "release",
                             "ci",
@@ -317,6 +317,20 @@
                         },
                         "versions": [
                             {
+                                "version": "0.2.0",
+                                "path": "packs/distribution/release-preflight-0.2.0.skillpack",
+                                "sha256": "38acaead44f614c3616ccd3364286431a18639643865f031a5a95620c6314ffd",
+                                "published_at": "2026-04-10T18:09:56+00:00",
+                                "size_bytes": 9889,
+                                "export_formats": [
+                                    "system-prompt",
+                                    "gpt-json",
+                                    "gem-txt",
+                                    "bedrock-xml",
+                                    "mcp-server"
+                                ]
+                            },
+                            {
                                 "version": "0.1.0",
                                 "path": "packs/distribution/release-preflight-0.1.0.skillpack",
                                 "sha256": "54e73051ac05ebc1f0485b238fb6850084c6f1777c64aee745c46024e37733f0",
@@ -335,7 +349,7 @@
                     {
                         "category": "evaluation",
                         "name": "ai-eng-evaluator",
-                        "latest": "1.0.0",
+                        "latest": "1.1.0",
                         "description": "Evaluates AI engineering code challenge submissions (GitHub repos, zip files, or local folders) against a structured competency matrix and produces a professional PDF report. Triggers on: evaluate repo, score candidate, grade challenge, review submission, competency levels (Junior/Medior/Senior), growth framework, engineering rubric. Works for any language or stack, not just Python/LangChain.",
                         "tags": [
                             "ai",
@@ -364,11 +378,11 @@
                         },
                         "versions": [
                             {
-                                "version": "0.2.0",
-                                "path": "packs/evaluation/ai-eng-evaluator-0.2.0.skillpack",
-                                "sha256": "fcef186619f22bea9f46c41ff4844b19ef96a166b3f014fd7436d232d8748c05",
-                                "published_at": "2026-04-06T13:39:40+00:00",
-                                "size_bytes": 38797,
+                                "version": "1.1.0",
+                                "path": "packs/evaluation/ai-eng-evaluator-1.1.0.skillpack",
+                                "sha256": "fedd6e72d0a79ef1b9e8d547a3147923a22665e922f26f873b093e9b731cd05d",
+                                "published_at": "2026-04-10T18:30:00+00:00",
+                                "size_bytes": 38813,
                                 "export_formats": [
                                     "system-prompt",
                                     "gpt-json",
@@ -383,6 +397,20 @@
                                 "sha256": "a000a52203431cd0738e689677c82931845da6e66c72fd599a300c8f8516c31b",
                                 "published_at": "2026-04-06T13:43:36+00:00",
                                 "size_bytes": 38800,
+                                "export_formats": [
+                                    "system-prompt",
+                                    "gpt-json",
+                                    "gem-txt",
+                                    "bedrock-xml",
+                                    "mcp-server"
+                                ]
+                            },
+                            {
+                                "version": "0.2.0",
+                                "path": "packs/evaluation/ai-eng-evaluator-0.2.0.skillpack",
+                                "sha256": "fcef186619f22bea9f46c41ff4844b19ef96a166b3f014fd7436d232d8748c05",
+                                "published_at": "2026-04-06T13:39:40+00:00",
+                                "size_bytes": 38797,
                                 "export_formats": [
                                     "system-prompt",
                                     "gpt-json",
