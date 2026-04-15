@@ -64,11 +64,45 @@
       },
       "versions": [
         {
-          "version": "0.1.0",
-          "path": "packs/distribution/release-preflight-0.1.0.skillpack",
-          "sha256": "54e73051ac05ebc1f0485b238fb6850084c6f1777c64aee745c46024e37733f0",
-          "published_at": "2026-04-09T11:33:34+00:00",
-          "size_bytes": 9131,
+          "version": "1.0.0",
+          "path": "packs/distribution/release-preflight-1.0.0.skillpack",
+          "sha256": "cbd69f6765efa6a93e2a19299342eee55bc4a699e5f96b2f171bfc11c93ed97d",
+          "published_at": "2026-04-15T10:54:26+00:00",
+          "size_bytes": 11666,
+          "export_formats": [
+            "system-prompt",
+            "gpt-json",
+            "gem-txt",
+            "bedrock-xml",
+            "mcp-server",
+            "mistral-json",
+            "gemini-api",
+            "openai-assistants"
+          ]
+        },
+        {
+          "version": "0.6.0",
+          "path": "packs/distribution/release-preflight-0.6.0.skillpack",
+          "sha256": "f9ca8a93649f428fa35428a3ec9ec2ae640c87e07e6352015eede7526cbccc0c",
+          "published_at": "2026-04-15T10:43:48+00:00",
+          "size_bytes": 11566,
+          "export_formats": [
+            "system-prompt",
+            "gpt-json",
+            "gem-txt",
+            "bedrock-xml",
+            "mcp-server",
+            "mistral-json",
+            "gemini-api",
+            "openai-assistants"
+          ]
+        },
+        {
+          "version": "0.3.0",
+          "path": "packs/distribution/release-preflight-0.3.0.skillpack",
+          "sha256": "57d413ee7906235cb20c9d7c5f0e686388ef2da4e82e8c85be74e66afa9550fc",
+          "published_at": "2026-04-11T12:00:00+00:00",
+          "size_bytes": 10671,
           "export_formats": [
             "system-prompt",
             "gpt-json",
@@ -92,51 +126,17 @@
           ]
         },
         {
-          "version": "0.3.0",
-          "path": "packs/distribution/release-preflight-0.3.0.skillpack",
-          "sha256": "57d413ee7906235cb20c9d7c5f0e686388ef2da4e82e8c85be74e66afa9550fc",
-          "published_at": "2026-04-11T12:00:00+00:00",
-          "size_bytes": 10671,
+          "version": "0.1.0",
+          "path": "packs/distribution/release-preflight-0.1.0.skillpack",
+          "sha256": "54e73051ac05ebc1f0485b238fb6850084c6f1777c64aee745c46024e37733f0",
+          "published_at": "2026-04-09T11:33:34+00:00",
+          "size_bytes": 9131,
           "export_formats": [
             "system-prompt",
             "gpt-json",
             "gem-txt",
             "bedrock-xml",
             "mcp-server"
-          ]
-        },
-        {
-          "version": "0.6.0",
-          "path": "packs/distribution/release-preflight-0.6.0.skillpack",
-          "sha256": "f9ca8a93649f428fa35428a3ec9ec2ae640c87e07e6352015eede7526cbccc0c",
-          "published_at": "2026-04-15T10:43:48+00:00",
-          "size_bytes": 11566,
-          "export_formats": [
-            "system-prompt",
-            "gpt-json",
-            "gem-txt",
-            "bedrock-xml",
-            "mcp-server",
-            "mistral-json",
-            "gemini-api",
-            "openai-assistants"
-          ]
-        },
-        {
-          "version": "1.0.0",
-          "path": "packs/distribution/release-preflight-1.0.0.skillpack",
-          "sha256": "cbd69f6765efa6a93e2a19299342eee55bc4a699e5f96b2f171bfc11c93ed97d",
-          "published_at": "2026-04-15T10:54:26+00:00",
-          "size_bytes": 11666,
-          "export_formats": [
-            "system-prompt",
-            "gpt-json",
-            "gem-txt",
-            "bedrock-xml",
-            "mcp-server",
-            "mistral-json",
-            "gemini-api",
-            "openai-assistants"
           ]
         }
       ]
@@ -237,20 +237,6 @@
       },
       "versions": [
         {
-          "version": "0.1.0",
-          "path": "packs/evaluation/user-story-test-cases-0.1.0.skillpack",
-          "sha256": "d055da9495bc6f1a3f056b01b3c2a4af1305930b5a1324fc4aca485eac14430a",
-          "published_at": "2026-04-06T13:54:02+00:00",
-          "size_bytes": 1401,
-          "export_formats": [
-            "system-prompt",
-            "gpt-json",
-            "gem-txt",
-            "bedrock-xml",
-            "mcp-server"
-          ]
-        },
-        {
           "version": "1.0.0",
           "path": "packs/evaluation/user-story-test-cases-1.0.0.skillpack",
           "sha256": "7ac42c61f891e5d361eb0d44e2f4175505fd875607a30810c23ff78b305029c4",
@@ -265,6 +251,20 @@
             "mistral-json",
             "gemini-api",
             "openai-assistants"
+          ]
+        },
+        {
+          "version": "0.1.0",
+          "path": "packs/evaluation/user-story-test-cases-0.1.0.skillpack",
+          "sha256": "d055da9495bc6f1a3f056b01b3c2a4af1305930b5a1324fc4aca485eac14430a",
+          "published_at": "2026-04-06T13:54:02+00:00",
+          "size_bytes": 1401,
+          "export_formats": [
+            "system-prompt",
+            "gpt-json",
+            "gem-txt",
+            "bedrock-xml",
+            "mcp-server"
           ]
         }
       ]
