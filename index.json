@@ -2,7 +2,7 @@
   "format_version": "3",
   "registry_name": "skill-registry",
   "base_url": "https://raw.githubusercontent.com/ficiverson/skill-registry/main",
-  "updated_at": "2026-04-15T10:54:26+00:00",
+  "updated_at": "2026-04-15T10:54:29+00:00",
   "skills": [
     {
       "category": "development",
@@ -219,26 +219,17 @@
     {
       "category": "evaluation",
       "name": "user-story-test-cases",
-      "latest": "0.1.0",
+      "latest": "1.0.0",
       "description": "Use this skill when deriving structured test cases from a user story. Triggers on: acceptance criteria, edge cases, happy path, negative tests, BDD.",
       "tags": [
-        "user",
-        "story",
-        "test",
-        "cases",
-        "evaluation",
-        "acceptance-criteria",
-        "edge-cases",
-        "happy-path",
-        "negative-tests",
-        "bdd"
+        "evaluation"
       ],
       "platforms": [
         "claude",
         "gemini",
         "codex",
-        "agents",
-        "vscode"
+        "vscode",
+        "agents"
       ],
       "owner": {
         "name": "Fernando Souto",
@@ -257,6 +248,23 @@
             "gem-txt",
             "bedrock-xml",
             "mcp-server"
+          ]
+        },
+        {
+          "version": "1.0.0",
+          "path": "packs/evaluation/user-story-test-cases-1.0.0.skillpack",
+          "sha256": "7ac42c61f891e5d361eb0d44e2f4175505fd875607a30810c23ff78b305029c4",
+          "published_at": "2026-04-15T10:54:29+00:00",
+          "size_bytes": 1472,
+          "export_formats": [
+            "system-prompt",
+            "gpt-json",
+            "gem-txt",
+            "bedrock-xml",
+            "mcp-server",
+            "mistral-json",
+            "gemini-api",
+            "openai-assistants"
           ]
         }
       ]
