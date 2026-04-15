@@ -2,7 +2,7 @@
   "format_version": "3",
   "registry_name": "skill-registry",
   "base_url": "https://raw.githubusercontent.com/ficiverson/skill-registry/main",
-  "updated_at": "2026-04-15T10:43:48+00:00",
+  "updated_at": "2026-04-15T10:54:26+00:00",
   "skills": [
     {
       "category": "development",
@@ -46,7 +46,7 @@
     {
       "category": "distribution",
       "name": "release-preflight",
-      "latest": "0.6.0",
+      "latest": "1.0.0",
       "description": ">\nFive-phase pre-release check for skills-forge: pytest/ruff/mypy (95%+ coverage gate),\npack consistency (sha256/size/manifest), schema alignment (FORMAT_VERSION), CLI sandbox\nUAT (all commands including info, doctor, update, diff, yank, deprecate, list filters,\nregistry, test, new export formats mistral-json/gemini-api/openai-assistants, SHA256\ninstall, E2E scenarios), and release hygiene. Trigger on: \"ready to release\",\n\"run preflight\", \"pre-release checklist\", \"verify before tagging\", \"UAT\",\n\"pack consistency\", \"registry up-to-date\", \"run lint and tests\", \"PyPI publish\".\nAlways run all phases unless the user explicitly requests a single one.",
       "tags": [
         "distribution"
@@ -111,6 +111,23 @@
           "sha256": "f9ca8a93649f428fa35428a3ec9ec2ae640c87e07e6352015eede7526cbccc0c",
           "published_at": "2026-04-15T10:43:48+00:00",
           "size_bytes": 11566,
+          "export_formats": [
+            "system-prompt",
+            "gpt-json",
+            "gem-txt",
+            "bedrock-xml",
+            "mcp-server",
+            "mistral-json",
+            "gemini-api",
+            "openai-assistants"
+          ]
+        },
+        {
+          "version": "1.0.0",
+          "path": "packs/distribution/release-preflight-1.0.0.skillpack",
+          "sha256": "cbd69f6765efa6a93e2a19299342eee55bc4a699e5f96b2f171bfc11c93ed97d",
+          "published_at": "2026-04-15T10:54:26+00:00",
+          "size_bytes": 11666,
           "export_formats": [
             "system-prompt",
             "gpt-json",
