@@ -2,7 +2,7 @@
   "format_version": "3",
   "registry_name": "skill-registry",
   "base_url": "https://raw.githubusercontent.com/ficiverson/skill-registry/main",
-  "updated_at": "2026-04-15T10:54:29+00:00",
+  "updated_at": "2026-04-15T15:19:10+00:00",
   "skills": [
     {
       "category": "development",
@@ -46,8 +46,8 @@
     {
       "category": "distribution",
       "name": "release-preflight",
-      "latest": "1.0.0",
-      "description": ">\nFive-phase pre-release check for skills-forge: pytest/ruff/mypy (95%+ coverage gate),\npack consistency (sha256/size/manifest), schema alignment (FORMAT_VERSION), CLI sandbox\nUAT (all commands including info, doctor, update, diff, yank, deprecate, list filters,\nregistry, test, new export formats mistral-json/gemini-api/openai-assistants, SHA256\ninstall, E2E scenarios), and release hygiene. Trigger on: \"ready to release\",\n\"run preflight\", \"pre-release checklist\", \"verify before tagging\", \"UAT\",\n\"pack consistency\", \"registry up-to-date\", \"run lint and tests\", \"PyPI publish\".\nAlways run all phases unless the user explicitly requests a single one.",
+      "latest": "1.1.0",
+      "description": ">\nFive-phase pre-release check for skills-forge: (1) pytest + ruff + mypy via\ncheck_pipeline.py, (2) pack consistency sha256/size/manifest, (3) schema alignment\nFORMAT_VERSION, (4) CLI sandbox UAT all commands + E2E scenarios, (5) release hygiene\nbranch/version/notes/registry. Triggers on: \"ready to release\", \"run preflight\",\n\"pre-release checklist\", \"verify before tagging\", \"UAT\", \"pack consistency\",\n\"run lint and tests\", \"pipeline check\", \"PyPI publish\".",
       "tags": [
         "distribution"
       ],
@@ -64,45 +64,11 @@
       },
       "versions": [
         {
-          "version": "1.0.0",
-          "path": "packs/distribution/release-preflight-1.0.0.skillpack",
-          "sha256": "cbd69f6765efa6a93e2a19299342eee55bc4a699e5f96b2f171bfc11c93ed97d",
-          "published_at": "2026-04-15T10:54:26+00:00",
-          "size_bytes": 11666,
-          "export_formats": [
-            "system-prompt",
-            "gpt-json",
-            "gem-txt",
-            "bedrock-xml",
-            "mcp-server",
-            "mistral-json",
-            "gemini-api",
-            "openai-assistants"
-          ]
-        },
-        {
-          "version": "0.6.0",
-          "path": "packs/distribution/release-preflight-0.6.0.skillpack",
-          "sha256": "f9ca8a93649f428fa35428a3ec9ec2ae640c87e07e6352015eede7526cbccc0c",
-          "published_at": "2026-04-15T10:43:48+00:00",
-          "size_bytes": 11566,
-          "export_formats": [
-            "system-prompt",
-            "gpt-json",
-            "gem-txt",
-            "bedrock-xml",
-            "mcp-server",
-            "mistral-json",
-            "gemini-api",
-            "openai-assistants"
-          ]
-        },
-        {
-          "version": "0.3.0",
-          "path": "packs/distribution/release-preflight-0.3.0.skillpack",
-          "sha256": "57d413ee7906235cb20c9d7c5f0e686388ef2da4e82e8c85be74e66afa9550fc",
-          "published_at": "2026-04-11T12:00:00+00:00",
-          "size_bytes": 10671,
+          "version": "0.1.0",
+          "path": "packs/distribution/release-preflight-0.1.0.skillpack",
+          "sha256": "54e73051ac05ebc1f0485b238fb6850084c6f1777c64aee745c46024e37733f0",
+          "published_at": "2026-04-09T11:33:34+00:00",
+          "size_bytes": 9131,
           "export_formats": [
             "system-prompt",
             "gpt-json",
@@ -126,17 +92,68 @@
           ]
         },
         {
-          "version": "0.1.0",
-          "path": "packs/distribution/release-preflight-0.1.0.skillpack",
-          "sha256": "54e73051ac05ebc1f0485b238fb6850084c6f1777c64aee745c46024e37733f0",
-          "published_at": "2026-04-09T11:33:34+00:00",
-          "size_bytes": 9131,
+          "version": "0.3.0",
+          "path": "packs/distribution/release-preflight-0.3.0.skillpack",
+          "sha256": "57d413ee7906235cb20c9d7c5f0e686388ef2da4e82e8c85be74e66afa9550fc",
+          "published_at": "2026-04-11T12:00:00+00:00",
+          "size_bytes": 10671,
           "export_formats": [
             "system-prompt",
             "gpt-json",
             "gem-txt",
             "bedrock-xml",
             "mcp-server"
+          ]
+        },
+        {
+          "version": "0.6.0",
+          "path": "packs/distribution/release-preflight-0.6.0.skillpack",
+          "sha256": "f9ca8a93649f428fa35428a3ec9ec2ae640c87e07e6352015eede7526cbccc0c",
+          "published_at": "2026-04-15T10:43:48+00:00",
+          "size_bytes": 11566,
+          "export_formats": [
+            "system-prompt",
+            "gpt-json",
+            "gem-txt",
+            "bedrock-xml",
+            "mcp-server",
+            "mistral-json",
+            "gemini-api",
+            "openai-assistants"
+          ]
+        },
+        {
+          "version": "1.0.0",
+          "path": "packs/distribution/release-preflight-1.0.0.skillpack",
+          "sha256": "cbd69f6765efa6a93e2a19299342eee55bc4a699e5f96b2f171bfc11c93ed97d",
+          "published_at": "2026-04-15T10:54:26+00:00",
+          "size_bytes": 11666,
+          "export_formats": [
+            "system-prompt",
+            "gpt-json",
+            "gem-txt",
+            "bedrock-xml",
+            "mcp-server",
+            "mistral-json",
+            "gemini-api",
+            "openai-assistants"
+          ]
+        },
+        {
+          "version": "1.1.0",
+          "path": "packs/distribution/release-preflight-1.1.0.skillpack",
+          "sha256": "b1d9ee5949ce8b1a99ea686b200c0383f60d680195321f89296ce87cb1e9eb43",
+          "published_at": "2026-04-15T15:19:10+00:00",
+          "size_bytes": 13587,
+          "export_formats": [
+            "system-prompt",
+            "gpt-json",
+            "gem-txt",
+            "bedrock-xml",
+            "mcp-server",
+            "mistral-json",
+            "gemini-api",
+            "openai-assistants"
           ]
         }
       ]
