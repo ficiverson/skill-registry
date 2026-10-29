@@ -2,8 +2,47 @@
   "format_version": "3",
   "registry_name": "skill-registry",
   "base_url": "https://raw.githubusercontent.com/ficiverson/skill-registry/main",
-  "updated_at": "2026-04-15T15:19:10+00:00",
+  "updated_at": "2026-10-29T10:15:55+00:00",
   "skills": [
+    {
+      "category": "497c4a46-d3e7-4c27-ab92-eb21f3e59b09_6ac58582-eb5e-44c1-9a93-ab5c1e067e31",
+      "name": "pdf",
+      "latest": "0.1.0",
+      "description": "Use this skill whenever the user wants to do anything with PDF files. This includes reading or extracting text/tables from PDFs, combining or merging multiple PDFs into one, splitting PDFs apart, rotating pages, adding watermarks, creating new PDFs, filling PDF forms, encrypting/decrypting PDFs, extracting images, and OCR on scanned PDFs to make them searchable. If the user mentions a .pdf file or asks to produce one, use this skill.",
+      "tags": [
+        "productivity"
+      ],
+      "platforms": [
+        "claude",
+        "gemini",
+        "codex",
+        "vscode",
+        "agents"
+      ],
+      "owner": {
+        "name": "Fernando Souto",
+        "email": "me@fernandosouto.dev"
+      },
+      "versions": [
+        {
+          "version": "0.1.0",
+          "path": "packs/497c4a46-d3e7-4c27-ab92-eb21f3e59b09_6ac58582-eb5e-44c1-9a93-ab5c1e067e31/pdf-0.1.0.skillpack",
+          "sha256": "ec6dd1cfab1cc2c3f5766f0935129bc802e32a9f40186fdc88b8f0eacb4d770f",
+          "published_at": "2026-10-29T10:15:55+00:00",
+          "size_bytes": 24242,
+          "export_formats": [
+            "system-prompt",
+            "gpt-json",
+            "gem-txt",
+            "bedrock-xml",
+            "mcp-server",
+            "mistral-json",
+            "gemini-api",
+            "openai-assistants"
+          ]
+        }
+      ]
+    },
     {
       "category": "development",
       "name": "publish-to-pypi",
